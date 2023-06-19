@@ -18,5 +18,5 @@ CODES 介绍
 3.codes 社区版 由老项目代码改写而来，推荐使用tomcat 8.5 +;开发环境eclipse +jdk7
 ![输入图片说明](https://github.com/codes-1/icodes/blob/main/WebRoot/1.png)
 ![输入图片说明](https://github.com/codes-1/icodes/blob/main/WebRoot/2.png)
-![输入图片说明](https://github.com/codes-1/icodes/blob/main/WebRoot/3.png)
+![输入图片说明](https://github.com/codes-1/icodes/blob/main/WebRoot/3.jpg)
 ![输入图片说明](https://github.com/codes-1/icodes/blob/main/WebRoot/4.png)
