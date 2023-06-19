@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping  package="cn.com.codes.object">
+    <class name="cn.com.codes.object.OtherMission" table="t_other_mission">
+    <cache usage="read-write" region="cn.com.codes.object.OtherMission"/>
+        <id name="missionId" type="java.lang.String">
+            <column name="mission_id" length="32" not-null="true" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="missionName" type="java.lang.String">
+            <column name="mission_name" length="64"/>
+        </property>
+        <property name="missionCategory" type="java.lang.Long">
+            <column name="mission_category"/>
+        </property>
+        <property name="missionType" type="java.lang.String">
+            <column name="mission_type" length="1"/>
+        </property>
+        <property name="projectId" type="java.lang.String">
+            <column name="project_id" length="32"/>
+        </property>
+        <property name="projectType" type="java.lang.String">
+            <column name="project_type" length="1"/>
+        </property>
+        <property name="chargePersonId" type="java.lang.String">
+            <column name="charge_person_id" length="32"/>
+        </property>
+        <property name="emergencyDegree" type="java.lang.Long">
+            <column name="emergency_degree"/>
+        </property>
+        <property name="difficultyDegree" type="java.lang.Long">
+            <column name="difficulty_degree"/>
+        </property>
+        <property name="predictStartTime" type="java.util.Date">
+            <column name="predict_start_time" length="7"/>
+        </property>
+        <property name="predictEndTime" type="java.util.Date">
+            <column name="predict_end_time" length="7"/>
+        </property>
+        <property name="standardWorkload" type="java.lang.String">
+            <column name="standard_workload" length="32"/>
+        </property>
+        <property name="actualWorkload" type="java.lang.String">
+            <column name="actual_workload" length="32"/>
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="description" length="32"/>
+        </property>
+        <property name="completionDegree" type="java.lang.String">
+            <column name="completion_degree" length="32"/>
+        </property>
+        <property name="createTime" type="java.util.Date">
+            <column name="create_time" length="7"/>
+        </property>
+        <property name="updateTime" type="java.util.Date">
+            <column name="update_time" length="7"/>
+        </property>
+        <property name="createUserId" type="java.lang.String">
+            <column name="create_user_id" length="32"/>
+        </property>
+        <property name="status" type="java.lang.String">
+            <column name="status" length="1"/>
+        </property>
+        <property name="stopReason" type="java.lang.String">
+            <column name="stop_reason" length="255"/>
+        </property>
+        <property name="missionNum" type="java.lang.String">
+            <column name="mission_num" length="32"/>
+        </property>
+    </class>
+</hibernate-mapping>

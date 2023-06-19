@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="cn.com.codes.object.TestCycleTask"
+		table="t_test_cycle_task">
+		<id name="id" type="java.lang.Long">
+			<column name="id" precision="15" scale="0" />
+			<generator class="native">
+			</generator>
+		</id>
+		<property name="name" type="java.lang.String">
+			<column name="name" length="500" />
+		</property>
+		<property name="ownerId" type="java.lang.String">
+			<column name="owner" />
+		</property>
+		<property name="status" type="java.lang.Integer">
+			<column name="status"/>
+		</property>
+		<property name="taskId" type="java.lang.String">
+			<column name="task_id" length="45"/>
+		</property>
+		<property name="exeEnv" type="java.lang.String">
+			<column name="exe_env" length="500" />
+		</property>
+		<property name="cycleType" type="java.lang.Integer">
+			<column name="cycle_type"  />
+		</property>
+		<property name="planStartDate" type="java.util.Date">
+			<column name="plan_start_date" />
+		</property>
+		<property name="planEndDate" type="java.util.Date">
+			<column name="plan_end_date" />
+		</property>
+		<property name="factStartDate" type="java.util.Date">
+			<column name="fact_start_date" />
+		</property>
+		<property name="factEndDate" type="java.util.Date">
+			<column name="fact_end_date" />
+		</property>
+		<property name="createDate" type="java.util.Date">
+			<column name="create_date" length="32" />
+		</property>
+		<property name="createId" type="java.lang.String">
+			<column name="create_id" />
+		</property>
+		<property name="remark" type="java.lang.String">
+			<column name="remark"/>
+		</property>
+		<property name="result" type="java.lang.String">
+			<column name="result" length="200" />
+		</property>
+		<property name="updateId" type="java.lang.String">
+			<column name="update_id" />
+		</property>		
+		<property name="updateDate" type="java.util.Date">
+			<column name="update_date" length="32" />
+		</property>
+	</class>
+</hibernate-mapping>

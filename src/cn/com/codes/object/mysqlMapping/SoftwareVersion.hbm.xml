@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="cn.com.codes.object.SoftwareVersion" table="T_SOFTWARE_VERSION">
+    <cache usage="read-write" region="cn.com.codes.object.SoftwareVersion" />
+        <id name="versionId" type="java.lang.Long">
+            <column name="VERSION_ID" precision="15" scale="0" />
+			<generator class="native">
+			</generator>
+        </id>
+        <property name="taskid" type="java.lang.String">
+            <column name="TASKID" length="32" />
+        </property>
+        <property name="versionNum" type="java.lang.String">
+            <column name="VERSION_NUM" length="30" not-null="true" />
+        </property>
+        <property name="insdate" type="java.util.Date">
+            <column name="INSDATE"/>
+        </property>
+        <property name="upddate" type="java.util.Date">
+            <column name="UPDDATE" />
+        </property>
+        <property name="remark" type="java.lang.String">
+            <column name="REMARK" length="200" />
+        </property>
+        <property name="seq" type="java.lang.Integer">
+            <column name="SEQ" />
+        </property>
+        <property name="verStatus" type="java.lang.Integer">
+            <column name="VER_STATUS" />
+        </property>
+		<set name="bugs" lazy="true" fetch="subselect" inverse="true">
+			<key column="DISCOVER_VER" />
+			<one-to-many class="cn.com.codes.object.BugBaseInfo" />
+		</set>
+    </class>
+</hibernate-mapping>

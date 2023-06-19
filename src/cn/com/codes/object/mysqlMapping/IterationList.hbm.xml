@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.com.codes.object" >
+	<class name="IterationList" table="t_iteration_list" dynamic-update="true">
+	<cache usage="read-write" region="cn.com.codes.object.IterationList"/>
+		<id name="iterationId" type="java.lang.String">
+			<column name="iteration_id" length="32" not-null="true" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="iterationBagName" type="java.lang.String">
+			<column name="iteration_bag_name" length="60"/>
+		</property>
+		<property name="createPerson" type="java.lang.String">
+			<column name="create_person" length="60"/>
+		</property>
+		<property name="createTime" type="java.util.Date">
+			<column name="create_time" length="11"/>
+		</property>
+		<property name="updateTime" type="java.util.Date">
+			<column name="update_time" length="11"/>
+		</property>
+		<property name="note" type="java.lang.String">
+			<column name="note" length="1000" />
+		</property>
+		<property name="associationProject" type="java.lang.String">
+			<column name="association_project" length="60" />
+		</property>
+		<property name="taskId" type="java.lang.String">
+			<column name="task_id" length="32" />
+		</property>
+		<property name="status" type="java.lang.String">
+			<column name="status" length="1" />
+		</property>
+		<property name="userId" type="java.lang.String">
+			<column name="user_id" length="32" not-null="true"/>
+		</property>
+		<property name="startTime" type="java.util.Date">
+			<column name="start_time" length="11"/>
+		</property>
+		<property name="endTime" type="java.util.Date">
+			<column name="end_time" length="11"/>
+		</property>
+		
+	</class>
+</hibernate-mapping>

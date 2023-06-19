@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="cn.com.codes.object.CaseBugRela" table="T_CASE_BUG_RELA">
+        <id name="bugCaseRelaId" type="java.lang.Long">
+            <column name="BUG_CASE_RELA_ID" precision="15" scale="0" />
+			<generator class="native">
+			</generator>
+        </id>
+         <property name="createrId" type="java.lang.String">
+            <column name="INSUSEID" length="32"/>
+        </property>       
+        <property name="testCaseId" type="java.lang.Long">
+            <column name="TESTCASEID" />
+        </property>
+        <property name="bugId" type="java.lang.Long">
+            <column name="BUGCARDID" />
+        </property>
+    </class>
+</hibernate-mapping>

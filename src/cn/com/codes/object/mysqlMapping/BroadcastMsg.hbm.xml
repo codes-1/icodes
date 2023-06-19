@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="cn.com.codes.object.BroadcastMsg"
+		table="T_BROADCAST_MSG">
+		<id name="logicId" type="java.lang.Long">
+			<column name="LOGIC_ID" precision="15" scale="0" />
+			<generator class="native">
+			</generator>
+		</id>
+		<property name="compId" type="java.lang.String">
+			<column name="COMP_ID" length="32" />
+		</property>
+		<property name="title" type="java.lang.String">
+			<column name="TITLE" />
+		</property>
+		<property name="overdueDate" type="java.util.Date">
+			<column name="OVERDUE_DATE"/>
+		</property>
+		<property name="startDate" type="java.util.Date">
+			<column name="START_DATE"/>
+		</property>
+		<property name="content" type="java.lang.String">
+			<column name="CONTENT" length="1000" />
+		</property>
+		<property name="state" type="java.lang.Integer">
+			<column name="STATE"  />
+		</property>
+		<property name="sendDate" type="java.util.Date">
+			<column name="SEND_DATE" />
+		</property>
+		<property name="senderId" type="java.lang.String">
+			<column name="SENDER_ID" length="32" />
+		</property>
+		<property name="msgType" type="java.lang.Integer">
+			<column name="TYPE" />
+		</property>
+		<property name="mailFlg" type="java.lang.Integer">
+			<column name="AND_MAIL"/>
+		</property>
+		<property name="attachUrl" type="java.lang.String">
+			<column name="ATTACH_URL" length="200" />
+		</property>
+		<set name="recpiUser" table="T_BROADMSG_RECIP_RELA" lazy="true"
+			inverse="false" cascade="delete">
+			<key>
+				<column name="MSG_LOGIC_ID" not-null="true" />
+			</key>
+			<many-to-many class="cn.com.codes.object.User" column="RECIP_ID"
+				outer-join="auto" />
+		</set>
+	</class>
+</hibernate-mapping>

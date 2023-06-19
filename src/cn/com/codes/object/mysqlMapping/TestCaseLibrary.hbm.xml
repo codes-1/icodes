@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping  package="cn.com.codes.object">
+    <class name="cn.com.codes.object.TestCaseLibrary" table="t_testcase_library">
+    <cache usage="read-write" region="cn.com.codes.object.TestCaseLibrary"/>
+    	<id name="libraryId" type="java.lang.String">
+            <column name="library_id" length="32" not-null="true" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="testcaseType" type="java.lang.String">
+            <column name="testcase_type" length="64" not-null="true" />
+        </property>
+        <property name="libraryCode" type="java.lang.String">
+            <column name="library_code" length="64" not-null="true" />
+        </property>
+        <property name="parentId" type="java.lang.String">
+            <column name="parent_id" length="32"/>
+        </property>
+         <property name="createUserId" type="java.lang.String">
+            <column name="create_user_id" length="32" not-null="true" />
+        </property>
+        <property name="createTime" type="java.util.Date">
+            <column name="create_time" length="7"/>
+        </property>
+        <property name="updateTime" type="java.util.Date">
+            <column name="update_time" length="7"/>
+        </property>
+    </class>
+</hibernate-mapping>

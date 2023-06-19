@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="cn.com.codes.object.BugCaseCycleRela"
+		table="t_cycle_task_bug_or_calse_real">
+		<id name="id" type="java.lang.Long">
+			<column name="id" precision="15" scale="0" />
+			<generator class="native">
+			</generator>
+		</id>
+		<property name="cycleTaskId" type="java.lang.Integer">
+			<column name="cycle_task_id"  />
+		</property>
+		<property name="bugOrCaseId" type="java.lang.Integer">
+			<column name="bug_or_case_id" />
+		</property>
+		<property name="exeId" type="java.lang.String">
+			<column name="exe_id"/>
+		</property>
+		<property name="exeDate" type="java.util.Date">
+			<column name="exe_date" length="45"/>
+		</property>
+		<property name="exeResult" type="java.lang.String">
+			<column name="exe_result" length="500" />
+		</property>
+		<property name="cycleType" type="java.lang.Integer">
+			<column name="cycle_type"  />
+		</property>
+	</class>
+</hibernate-mapping>

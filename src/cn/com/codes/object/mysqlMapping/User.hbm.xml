@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.com.codes.object" >
+	<class name="User" table="T_USER" dynamic-update="true">
+	<cache usage="read-write" region="cn.com.codes.object.User"/>
+		<id name="id" type="java.lang.String">
+			<column name="ID" length="32" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="companyId" type="java.lang.String">
+			<column name="COMPANYID" length="32" not-null="true" />
+		</property>
+		<property name="loginName" type="java.lang.String">
+			<column name="LOGINNAME" length="32" not-null="true" />
+		</property>
+		<property name="name" type="java.lang.String">
+			<column name="NAME" length="32" not-null="true" />
+		</property>
+		<property name="password" type="java.lang.String">
+			<column name="PASSWORD" length="32" not-null="true" />
+		</property>
+		<property name="isAdmin" type="java.lang.Integer">
+			<column name="ISADMIN" 
+				not-null="true" />
+		</property>
+		<property name="employeeId" type="java.lang.String">
+			<column name="EMPLOYEEID" length="32" />
+		</property>
+		<property name="status" type="java.lang.Integer">
+			<column name="STATUS" />
+		</property>
+		<property name="email" type="java.lang.String">
+			<column name="EMAIL" length="32" not-null="true" />
+		</property>
+		<property name="tel" type="java.lang.String">
+			<column name="TEL" length="20" />
+		</property>
+		<property name="question" type="java.lang.String">
+			<column name="QUESTION" length="20" />
+		</property>
+		<property name="answer" type="java.lang.String">
+			<column name="ANSWER" length="50" />
+		</property>
+		<property name="insertDate" type="java.util.Date">
+			<column name="INSERTDATE" length="11" />
+		</property>
+		<property name="updateDate" type="java.util.Date">
+			<column name="UPDATEDATE" length="11" />
+		</property>
+		<property name="delFlag" type="java.lang.Integer">
+			<column name="DELFLAG" precision="1" scale="0" />
+		</property>
+		<property name="officeTel" type="java.lang.String">
+			<column name="OFFICETEL" length="20" />
+		</property>	
+		<property name="headShip" type="java.lang.String">
+			<column name="HEADSHIP" length="125" />
+		</property>		
+		<property name="myHome" type="java.lang.String">
+			<column name="MY_HOME" length="300" />
+		</property>	
+		<property name="docUserId" type="java.lang.Long">
+			<column name="RELA_DOC_USER_ID" />
+		</property>				
+
+		<!-- property name="joinCompDate" type="java.util.Date">
+			<column name="JOIN_COMP_DATE"  />
+		</property-->				
+		<bag name="roleList" table="T_USER_ROLE_REAL" inverse="true"
+			lazy="true">
+			<cache usage="read-write" region="cn.com.codes.object.User"/>
+			<key column="USERID" />
+			<many-to-many class="Role" column="ROLEID" />
+		</bag>
+		<bag name="groupList" table ="T_USER_GROUP_RELA"  inverse="false" 
+			lazy="true">
+			<key column="USERID" />
+			<many-to-many class="Group" column="GROUPID" />
+		</bag>
+		<set name="devMemb" lazy="true" fetch="subselect" inverse="true">
+			<key column="USERID" />
+			<one-to-many class="cn.com.codes.object.OutlineTeamMember" />
+		</set>
+		<set name="taskUseActors" lazy="true" fetch="subselect" inverse="true">
+			<key column="USERID" />
+			<one-to-many class="cn.com.codes.object.TaskUseActor" />
+		</set>
+	</class>
+</hibernate-mapping>

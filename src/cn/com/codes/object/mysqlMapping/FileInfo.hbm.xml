@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.com.codes.object" >
+	<class name="FileInfo" table="t_file_info" dynamic-update="true">
+	<cache usage="read-write" region="cn.com.codes.object.FileInfo"/>
+		<id name="fileId" type="java.lang.String">
+			<column name="file_id" length="32" not-null="true" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="type" type="java.lang.String">
+			<column name="type" length="8"/>
+		</property>
+		<property name="typeId" type="java.lang.Long">
+			<column name="type_id" precision="15" scale="0" />
+		</property>
+		<property name="filePath" type="java.lang.String">
+			<column name="file_path" length="1024" />
+		</property>
+		<property name="relativeName" type="java.lang.String">
+			<column name="relative_name" length="1024" />
+		</property>
+	</class>
+</hibernate-mapping>

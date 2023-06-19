@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cn.com.codes.object">
+    <class name="BugBaseInfo" table="T_BUGBASEINFO" >
+    <cache usage="read-write" region="cn.com.codes.object.BugBaseInfo"/>
+        <id name="bugId" type="java.lang.Long">
+            <column name="BUGCARDID" precision="15" scale="0" />
+			<generator class="native">
+			</generator>
+        </id>
+        <property name="taskId" type="java.lang.String">
+            <column name="TASK_ID" length="32" />
+        </property>
+        <property name="moduleId" type="java.lang.Long">
+            <column name="MODULEID"  not-null="true" />
+        </property>
+        <property name="bugTypeId" type="java.lang.Long">
+            <column name="BUGTYPE"  />
+        </property>
+        <property name="bugGradeId" type="java.lang.Long">
+            <column name="BUGLEVEL"  />
+        </property>
+        <property name="bugFreqId" type="java.lang.Long">
+            <column name="BUGFREQ" />
+        </property>
+        <property name="bugOccaId" type="java.lang.Long">
+            <column name="BUGOCCA" />
+        </property>
+        <property name="reProTxt" type="java.lang.String">
+            <column name="REPRODUCT_TXT" length="1200" />
+        </property>
+        <property name="reProStep" type="java.lang.String">
+            <column name="REPRODUCTSTEP" length="1200" />
+        </property>        
+        <property name="bugReptId" type="java.lang.String">
+            <column name="BUGDISVPERID" length="32" />
+        </property>
+        <property name="bugReptVer" type="java.lang.Long">
+            <column name="DISCOVER_VER" />
+        </property>
+        <property name="verifyVer" type="java.lang.Long">
+            <column name="VERIFY_VER" />
+        </property>
+        <property name="reptDate" type="java.util.Date">
+            <column name="BUGDISVDATE" />
+        </property>
+        <property name="msgFlag" type="java.lang.Integer">
+            <column name="MSG_FLAG" />
+        </property>
+        <property name="bugAntimodDate" type="java.util.Date">
+            <column name="BUGANTIMODDATE" />
+        </property>
+        <property name="priId" type="java.lang.Long">
+            <column name="PRI" />
+        </property>
+        <property name="genePhaseId" type="java.lang.Long">
+            <column name="GENERATEPHASE"  />
+        </property>
+        <property name="devOwnerId" type="java.lang.String">
+            <column name="DEV_OWNER" length="32" />
+        </property>
+        <property name="testOwnerId" type="java.lang.String">
+            <column name="TEST_OWNER" length="32" />
+        </property>        
+        <property name="planAmendHour" type="java.lang.Float">
+            <column name="PLANAMENDHOUR" precision="126" scale="0" />
+        </property>
+        <property name="geneCauseId" type="java.lang.Long">
+            <column name="GENERATECAUSE"  />
+        </property>
+        <property name="sourceId" type="java.lang.Long">
+            <column name="SOURCE"  />
+        </property>
+        <property name="platformId" type="java.lang.Long">
+            <column name="PLATFORMID" />
+        </property>
+        <property name="bugDesc" type="java.lang.String">
+            <column name="BUGDESC" length="100" />
+        </property>
+        <property name="currStateId" type="java.lang.Integer">
+            <column name="CURRENT_STATE"  />
+        </property>
+        <property name="currHandlerId" type="java.lang.String">
+            <column name="CURRENT_HANDLER" length="32" />
+        </property>
+        <property name="currHandlDate" type="java.util.Date">
+            <column name="CURRENT_HANDL_DATE"  />
+        </property>
+        <property name="currRemark" type="java.lang.String">
+            <column name="CURRENT_REMARK" length="200" />
+        </property>
+        <property name="currFlowCd" type="java.lang.Integer">
+            <column name="CURR_FLOW_CODE"/>
+        </property>
+        <property name="nextFlowCd" type="java.lang.Integer">
+            <column name="NEXT_FLOW_CODE" />
+        </property>
+        <property name="relaCaseFlag" type="java.lang.Integer">
+            <column name="REAL_CASE_FLAG" />
+        </property>  
+        <property name="analyseOwnerId" type="java.lang.String">
+            <column name="ANALYSER_OWNER"/>
+        </property>
+        <property name="intercessOwnerId" type="java.lang.String">
+            <column name="INTERCESS_OWNER"/>
+        </property>
+        <property name="assinOwnerId" type="java.lang.String">
+            <column name="ASSIGNER_OWNER"/>
+        </property>
+        <property name="reproPersent" type="java.lang.String">
+            <column name="REPRO_PERSENT"/>
+        </property>
+        <property name="withRepteId" type="java.lang.Long">
+            <column name="REPEATE_ID"/>
+        </property> 
+        <property name="initState" type="java.lang.Integer">
+            <column name="INIT_STATE" />
+        </property>
+        <property name="attachUrl" type="java.lang.String">
+            <column name="ATTACH_URL"/>
+        </property>    
+        <property name="fixVer" type="java.lang.Long">
+            <column name="FIX_VERSION"/>
+        </property> 
+        <property name="fixDate" type="java.util.Date">
+            <column name="FIX_DATE"  />
+        </property>        
+        
+         <property name="nextOwnerId" type="java.lang.String">
+            <column name="bug_num"  />
+        </property>          
+          <property name="moduleNum" type="java.lang.String">
+            <column name="MODULENUM"  />
+        </property>  
+        
+          <property name="chargeOwner" type="java.lang.String">
+            <column name="CHARGE_OWNER"  />
+        </property>         
+        
+        
+               
+        <!--  
+        <property name="relaBugId" type="java.lang.Long">
+            <column name="SOURCE_BUG_ID"/>
+        </property>  -->                 
+		<!--  many-to-one name="testOwner" class="User" unique="true" column="TEST_OWNER" fetch="join" update="false" insert="false"/>
+		<many-to-one name="currHander" class="User" unique="true" column="CURRENT_HANDLER" fetch="join" update="false" insert="false"/>
+		<many-to-one name="devOwner" class="User" unique="true" column="DEV_OWNER" fetch="join" update="false" insert="false"/>
+		<many-to-one name="analysOwner" class="User" unique="true" column="ANALYSER_OWNER" fetch="join" update="false" insert="false"/>
+		<many-to-one name="intecesOwner" class="User" unique="true" column="INTERCESS_OWNER" fetch="join" update="false" insert="false"/>
+		<many-to-one name="assinOwner" class="User" unique="true" column="ASSIGNER_OWNER" fetch="join" update="false" insert="false"/>
+    	-->
+    	<set name="testCases" table="T_CASE_BUG_RELA" lazy="true" inverse="true" >
+    		<key>
+    			<column name="BUGCARDID"  not-null="true" />
+    		</key>
+    		<many-to-many class="TestCaseInfo">
+    			<column name="TESTCASEID"  not-null="true" />
+    		</many-to-many>
+    	</set>   
+    </class>
+</hibernate-mapping>
