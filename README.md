@@ -3,7 +3,7 @@
 CODES 介绍
 
  开源免费一站式研发管理平台
-![输入图片说明](https://github.com/codes-1/icodes/blob/main/WebRoot/5.png)
+![输入图片说明](https://github.com/codes-1/icodes/WebRoot/5.png)
 
  [官网及介绍](http://icodes.work)
 
@@ -16,7 +16,7 @@ CODES 介绍
 2.src\sql\codes.sql 数据库脚本（初始codes 的超级管理员为admin ,密码也是admin）
 
 3.codes 社区版 由老项目代码改写而来，推荐使用tomcat 8.5 +;开发环境eclipse +jdk7
-![输入图片说明](https://github.com/codes-1/icodes/blob/main/WebRoot/1.png)
-![输入图片说明](https://github.com/codes-1/icodes/blob/main/WebRoot/2.png)
-![输入图片说明](https://github.com/codes-1/icodes/blob/main/WebRoot/3.jpg)
-![输入图片说明](https://github.com/codes-1/icodes/blob/main/WebRoot/4.png)
+![输入图片说明](https://github.com/codes-1/icodes/WebRoot/1.png)
+![输入图片说明](https://github.com/codes-1/icodes/WebRoot/2.png)
+![输入图片说明](https://github.com/codes-1/icodes/WebRoot/3.jpg)
+![输入图片说明](https://github.com/codes-1/icodes/WebRoot/4.png)
