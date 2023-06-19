@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="dist" basedir="." >
+	<description>
+		mypm build file
+	</description>
+	
+	<!-- include build.proprety file -->
+	<property file="build.property"/>
+	
+	<property name="srcDir" location="src"/>
+	<property name="webDir" location="WebRoot"/>
+	<!-- 
+	<property name="pluginDir" location="document/plugins"/>
+	-->
+	<property name="lib.dir" location="${webDir}/WEB-INF/lib"/>
+	
+	<property name="distDir" location="${webAppProjectName}"/>
+	<property name="dist.lib" location="${distDir}/WEB-INF/lib"/>
+	<property name="dist.classes" location="${distDir}/WEB-INF/classes"/>
+	
+	
+	
+	<target name="init" >
+		<tstamp/>
+		<mkdir dir="${distDir}" />
+		<echo message="mkdir ${distDir}"/>
+		<mkdir dir="${dist.classes}" />
+		<echo message="mkdir ${dist.classes}"/>
+		<mkdir dir="${dist.lib}" />
+		<echo message="mkdir ${dist.lib}"/>	
+		<!-- copy jar file -->
+		<echo message="copy jar file"/>
+		<copy todir="${dist.lib}">
+			<fileset dir="${lib.dir}">
+				<include name="*.jar"/>
+			</fileset>
+		</copy>
+		
+		<!-- copy resource file -->
+		<echo message="copy resource file"/>
+		<copy todir="${dist.classes}" overwrite="true">
+			<fileset dir="${srcDir}">
+				<include name="**/*.xml"/>
+				<include name="*.properties"/>
+				<include name="resource/**/*.*"/>
+				<include name="META-INF/**/*.*"/>
+			</fileset>
+		</copy>
+	
+		<!-- copy jsp,jpg,css... file -->
+		<echo message="copy jsp,jpg,css... file"/>
+		<copy todir="${distDir}" overwrite="true">
+			<fileset dir="${webDir}">
+				<exclude name="**/*.class"/>
+				<exclude name="${lib.dir}/*.jar"/>
+				<exclude name="${lib.dir}/*.jar"/>
+				<exclude name="/logs/*.*"/>
+
+			</fileset>
+		</copy>
+		
+		
+		
+		<!--<copy todir="${dist.classes}/plugins" overwrite="true">
+			<fileset dir="${pluginDir}">
+				<include name="*.zip"/>
+			</fileset>
+		</copy>	-->
+		<!--<copy todir="${dist.classes}/.plugins" overwrite="true">
+			<fileset dir="document/.plugins">
+				<include name="*.zip"/> 
+				<exclude name="logicaldoc-core@5.1.0/*.*"/>
+				<exclude name="logicaldoc-lang-zh@4.5.1/*.*"/>
+				<exclude name="logicaldoc-webdav@5.1.0/*.*"/>
+				<include name="*.meta"/>
+			</fileset>
+		</copy>	-->	
+		<!--<copy todir="${dist.classes}" overwrite="true">
+			<fileset dir="document">
+				<include name="ldoc-log4j.xml"/>
+				<include name="context.properties"/>
+			</fileset>
+		</copy>-->
+		<path id="classpath">
+			<pathelement path="${classpath}"/>
+			<fileset dir="${lib.dir}">
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${webDir}">
+				<include name="WEB-INF/ldocLib/lib/*.jar"/>
+			</fileset>
+				<fileset dir="${webDir}">
+					<include name="WEB-INF/platform/plugins/org.eclipse.birt.report.data.oda.jdbc_2.5.2.v20100205/*.jar"/>
+				</fileset>
+		</path>
+	</target>
+	
+	<target name="compile" depends="init">
+		<!--<javac encoding="utf-8" srcdir="${srcDir}" destdir="${dist.classes}" >
+        	<classpath refid="classpath"/>
+		</javac>-->
+		<javac encoding="utf-8" srcdir="${srcDir}" destdir="${dist.classes}" debug="true" includeantruntime="false">
+		       <classpath refid="classpath"/>
+		</javac>
+	</target>
+
+	
+	<target name="dist" depends="compile">
+		<echo message="jar...."/>
+		<!--jar destfile="${distDir}.war" basedir="${distDir}"></jar-->
+		<copy todir="${webDir}/WEB-INF/classes" overwrite="true">
+			<fileset dir="${dist.classes}">
+				<exclude name="svn/*.*"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	<!--target name="clean" depends="dist">
+		<delete dir="${distDir}"/>
+		
+		<delete file="${distDir}.war"/>
+	</target-->
+
+</project>
+
+
