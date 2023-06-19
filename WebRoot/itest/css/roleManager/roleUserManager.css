@@ -1,0 +1,67 @@
+/*自定义tab选择卡样式*/
+  .tab_div{
+    background-color: #fff;
+    letter-spacing: -10px;
+    height:35px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .tab_menu{
+     position:relative;
+     padding-left: 0px;   
+     margin-bottom: 0;
+     list-style:none
+  }
+  
+  .tab_menu a{
+    display:block;
+    width:100%;
+    color:#000;
+  }
+  
+  .tabwapper{
+     background-color: #fff;
+     margin-top:5px;
+  }
+  
+  .tab_div li:hover{ cursor: pointer;}
+  
+  .tab_li_lf{
+    float:left;
+    width: 112px;
+    line-height:34px;
+    text-align:center;
+    color: #505a70;
+    border-color: #ddd;;
+    border-width: 1px;
+    border-style: solid solid none solid;
+    letter-spacing: 0px;
+    border-right-width: 0;
+  }
+  
+  .tab_li_rt{
+    float:left;
+    width: 112px;
+    line-height:34px;
+    text-align:center;
+    color: #505a70;
+    border-color: #ddd;;
+    border-width: 1px;
+    border-style: solid solid none none;
+    letter-spacing: 0;
+  }
+ 
+  .active {
+    border-width: 2px 1px 3px 1px;
+    border-style: solid;
+    border-color: #1970e4 #ddd #fff #ddd;
+    background-color: #fff;
+    line-height: 30px;
+    text-align:center
+ }
+ 
+  .active>a{
+     margin-bottom:3px;
+     color:#1970e4
+  }
+/*自定义tab选择卡样式*/

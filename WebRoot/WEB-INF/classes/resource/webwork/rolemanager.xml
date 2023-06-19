@@ -1,0 +1,15 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+
+<xwork>
+	<package name="role" extends="default" namespace="/role">
+		<action name="roleAction" class="cn.com.mypm.roleManager.web.RoleAction">
+			<result name="roleList">/jsp/rolemanager/roleList.jsp</result>
+			<result name="authGrant">/jsp/rolemanager/authGrant.jsp</result>
+			<result name="browserAuth">/jsp/rolemanager/broAuth.jsp</result>
+			<result name="roleUserList">/jsp/rolemanager/bowRoleUser.jsp</result>
+			<result name="userManager">/jsp/rolemanager/manaRoleUser.jsp</result>
+			<result name="loadAuthTree">/jsp/rolemanager/authTree.jsp</result>
+		</action>
+	</package>
+</xwork>
+

@@ -1,0 +1,71 @@
+@CHARSET "UTF-8";
+/*报表名称*/
+.title{
+	 padding: 2px 2px 2px 2px;
+	 font-family: Tahoma;
+	 font-size:15px;
+	 font-weight:bolder;
+	 color:#211FBD;
+	 text-align:center;
+}
+/*分组th*/
+.groupTh{
+	padding: 2px 2px 2px 2px;
+	font-family: Tahoma;
+	font-size:14px;
+	font-weight:bolder;
+	text-align:left;
+	padding-left:8px;
+	background-color:#d6c5f2;
+	color:black;
+}
+/*表格通用样式*/
+.tables{
+	font-family: Tahoma;
+	font-size:13px;
+	padding:5px;
+	text-align:center;
+	vertical-align: middle;
+	height: 20px;
+	font-size:13px;
+	margin: 0; 
+	border: 1px solid #C2D5DC;
+}
+/*表格第一行，注意不是表格的th，有些客户要求把合计行放到最上面*/
+.table-first-row{
+	color:#666666;
+	font-weight:normal;
+}
+/*表格的表格线*/
+.table-border{
+	border: 1px solid #C2D5DC;
+	padding: 1px; 
+	float: left;
+}
+/*表格的th*/
+.table-th{
+	padding: 2px 2px 2px 2px;
+	color:#045a78;
+	font-size:14px;
+	font-weight: bolder; 
+	background-color: #E5F2F8;
+	vertical-align: middle;
+}
+
+/*最后一列(几列之和、几列之差等运算)*/
+.table-last-column{
+	background-color:#E2EAF3;
+}
+/*最后一行(求统计等)*/
+.table-last-row{
+	font-weight: bold; 
+	font-size:13px;
+	background-color:#FFFFCC;
+	color: #333333; 
+}
+/*lable*/
+.lable{
+	color:#045a78;
+	font-size:13px;
+	text-align:right;
+}

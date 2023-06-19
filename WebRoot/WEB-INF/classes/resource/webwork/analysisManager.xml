@@ -1,0 +1,10 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="analysis" extends="default" namespace="/analysis">
+		<action name="analysisAction" class="cn.com.mypm.analysisManager.web.AnalysisAction">
+			<result name="goAnalysisMain">/jsp/analysisManager/analysisMain.jsp</result>
+			<result name="ajax">/jsp/analysisManager/analysisResult.txt</result>
+			<result name="jump">/jsp/common/reptHint.jsp</result>
+		</action>
+	</package>
+</xwork>

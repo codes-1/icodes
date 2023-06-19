@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cn.com.codes.object">
+    <class name="Role" table="T_ROLE" >
+    <cache usage="read-write" region="cn.com.codes.object.Role"/>
+        <id name="roleId" type="java.lang.String">
+            <column name="ROLEID" length="32" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="roleName" type="java.lang.String">
+            <column name="ROLENAME" length="40" />
+        </property>
+        <property name="updateDate" type="java.util.Date">
+            <column name="UPDATEDATE" length="11" />
+        </property>
+		<property name="remark" type="java.lang.String">
+			<column name="REMARK" length="25" />
+		</property>
+		<property name="accessIp" type="java.lang.String">
+			<column name="ACCESSIP" length="500" />
+		</property>
+        <property name="companyId" type="java.lang.String">
+            <column name="COMPANYID" length="32" />
+        </property>
+        <property name="docRoleId" type="java.lang.Long">
+            <column name="RELA_DOC_ROLE_ID" />
+        </property>        
+		<set name="function" table="T_ROLE_FUNCTION_REAL"
+			lazy="true" inverse="false" >
+			<key>
+				<column name="ROLEID" length="32" not-null="true" />
+			</key>
+			<many-to-many class="SimpleFunction">
+				<column name="FUNCTIONID" length="32" not-null="true" />
+			</many-to-many>
+		</set>
+		<set name="user" table="T_USER_ROLE_REAL" lazy="true"
+			inverse="false">
+			<key>
+				<column name="ROLEID" not-null="true" />
+			</key>
+			<many-to-many class="cn.com.codes.object.SimpleUser" column="USERID"
+				outer-join="auto" />
+		</set>
+		<set name="privilege" table="T_ROLE_FUNCTION_REAL"
+			lazy="true" >
+			<key>
+				<column name="ROLEID" length="32" not-null="true" />
+			</key>
+			<many-to-many class="Function">
+				<column name="FUNCTIONID" length="32" not-null="true" />
+			</many-to-many>
+		</set>
+    </class>
+</hibernate-mapping>

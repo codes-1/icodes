@@ -1,0 +1,129 @@
+<ehcache>
+	<diskStore path="java.io.tmpdir" />
+	<defaultCache maxElementsInMemory="2000" eternal="false"
+		timeToIdleSeconds="1800" timeToLiveSeconds="1800"
+		overflowToDisk="false" />
+	<cache name="org.hibernate.cache.StandardQueryCache"
+		maxElementsInMemory="6000" eternal="false" timeToIdleSeconds="1800"
+		timeToLiveSeconds="1800" overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.User" maxElementsInMemory="6000"
+		eternal="false" timeToIdleSeconds="4200" timeToLiveSeconds="4200"
+		overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.TypeDefine"
+		maxElementsInMemory="6000" eternal="false" timeToIdleSeconds="4200"
+		timeToLiveSeconds="4200" overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.TestTaskDetail"
+		maxElementsInMemory="6000" eternal="false" timeToIdleSeconds="4200"
+		timeToLiveSeconds="4200" overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.TestResult"
+		maxElementsInMemory="6000" eternal="false" timeToIdleSeconds="4200"
+		timeToLiveSeconds="4200" overflowToDisk="false" />
+	<cache name="cn.com.codes.object.CaseExeHistory"
+		maxElementsInMemory="6000" eternal="false" timeToIdleSeconds="4200"
+		timeToLiveSeconds="4200" overflowToDisk="false" />
+	<cache name="cn.com.codes.object.TestFlowInfo"
+		maxElementsInMemory="6000" eternal="false" timeToIdleSeconds="4200"
+		timeToLiveSeconds="4200" overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.TestCaseInfo"
+		maxElementsInMemory="6000" eternal="false" timeToIdleSeconds="4200"
+		timeToLiveSeconds="4200" overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.TaskUseActor"
+		maxElementsInMemory="6000" eternal="false" timeToIdleSeconds="4200"
+		timeToLiveSeconds="4200" overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.SysLog" maxElementsInMemory="6000"
+		eternal="false" timeToIdleSeconds="4200" timeToLiveSeconds="4200"
+		overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.SoftwareVersion"
+		maxElementsInMemory="6000" eternal="false" timeToIdleSeconds="4200"
+		timeToLiveSeconds="4200" overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.SimpleUser"
+		maxElementsInMemory="6000" eternal="false" timeToIdleSeconds="4200"
+		timeToLiveSeconds="4200" overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.SimpleFunction"
+		maxElementsInMemory="6000" eternal="false" timeToIdleSeconds="4200"
+		timeToLiveSeconds="4200" overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.Role" maxElementsInMemory="6000"
+		eternal="false" timeToIdleSeconds="4200" timeToLiveSeconds="4200"
+		overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.Queryinfo"
+		maxElementsInMemory="6000" eternal="false" timeToIdleSeconds="4200"
+		timeToLiveSeconds="4200" overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.OutlineTeamMember"
+		maxElementsInMemory="6000" eternal="false" timeToIdleSeconds="4200"
+		timeToLiveSeconds="4200" overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.OutlineInfo"
+		maxElementsInMemory="6000" eternal="false" timeToIdleSeconds="4200"
+		timeToLiveSeconds="4200" overflowToDisk="false" />
+
+
+	<cache name="cn.com.codes.object.ModuleVersion"
+		maxElementsInMemory="6000" eternal="false" timeToIdleSeconds="4200"
+		timeToLiveSeconds="4200" overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.ModuleVerRec"
+		maxElementsInMemory="6000" eternal="false" timeToIdleSeconds="4200"
+		timeToLiveSeconds="4200" overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.LogConfig"
+		maxElementsInMemory="6000" eternal="false" timeToIdleSeconds="4200"
+		timeToLiveSeconds="4200" overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.Group" maxElementsInMemory="6000"
+		eternal="false" timeToIdleSeconds="4200" timeToLiveSeconds="4200"
+		overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.Function" maxElementsInMemory="6000"
+		eternal="false" timeToIdleSeconds="4200" timeToLiveSeconds="4200"
+		overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.DefaultPage"
+		maxElementsInMemory="6000" eternal="false" timeToIdleSeconds="4200"
+		timeToLiveSeconds="4200" overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.Company" maxElementsInMemory="6000"
+		eternal="false" timeToIdleSeconds="4200" timeToLiveSeconds="4200"
+		overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.CaseBugRela"
+		maxElementsInMemory="6000" eternal="false" timeToIdleSeconds="4200"
+		timeToLiveSeconds="4200" overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.Bugstateinfo"
+		maxElementsInMemory="6000" eternal="false" timeToIdleSeconds="4200"
+		timeToLiveSeconds="4200" overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.BugShortMsg"
+		maxElementsInMemory="6000" eternal="false" timeToIdleSeconds="4200"
+		timeToLiveSeconds="4200" overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.BugHandHistory"
+		maxElementsInMemory="6000" eternal="false" timeToIdleSeconds="4200"
+		timeToLiveSeconds="4200" overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.BugBaseInfo"
+		maxElementsInMemory="6000" eternal="false" timeToIdleSeconds="4200"
+		timeToLiveSeconds="4200" overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.BroadcastMsg"
+		maxElementsInMemory="6000" eternal="false" timeToIdleSeconds="4200"
+		timeToLiveSeconds="4200" overflowToDisk="false" />
+
+	<cache name="cn.com.codes.object.SingleTestTask"
+		maxElementsInMemory="6000" eternal="false" timeToIdleSeconds="4200"
+		timeToLiveSeconds="4200" overflowToDisk="false" />
+
+</ehcache>

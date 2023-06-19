@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+    <class name="cn.com.codes.object.SingleTestTask" table="T_SINGLE_TEST_TASK" >
+    <cache usage="read-write" region="cn.com.codes.object.SingleTestTask" />
+        <id name="taskId" type="java.lang.String">
+            <column name="TASKID" length="32" />
+            <!-- <generator class="uuid.hex" /> -->
+        </id>
+        <property name="insDate" type="java.util.Date">
+            <column name="INSDATE" length="7" />
+        </property>
+        <property name="updDate" type="java.util.Date">
+            <column name="UPDDATE" length="7" />
+        </property>
+        <property name="companyId" type="java.lang.String">
+            <column name="COMPANYID" length="32" not-null="true" />
+        </property>
+        <property name="createId" type="java.lang.String">
+            <column name="CREATE_ID" length="32" />
+        </property>
+        <property name="psmId" type="java.lang.String">
+            <column name="PSM_ID" length="32" />
+        </property>
+        <property name="proName" type="java.lang.String">
+            <column name="PRO_NAME" length="60" />
+        </property>
+        <property name="proNum" type="java.lang.String">
+            <column name="PRO_NUM" length="30" />
+        </property>
+        <property name="devDept" type="java.lang.String">
+            <column name="DEV_DEPT" length="60" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="STATUS_FLG" length="400" />
+        </property>
+        <property name="planStartDate" type="java.util.Date">
+            <column name="PLAN_START_DATE" length="7" />
+        </property>
+        <property name="planEndDate" type="java.util.Date">
+            <column name="PLAN_END_DATE" length="7" />
+        </property>
+        <property name="factStartDate" type="java.util.Date">
+            <column name="FACT_START_DATE" length="7" />
+        </property>
+        <property name="factEndDate" type="java.util.Date">
+            <column name="FACT_END_DATE" length="7" />
+        </property>
+        <property name="testPhase" type="java.lang.Integer">
+            <column name="TEST_PHASE" />
+        </property>
+        <property name="planDocName" type="java.lang.String">
+            <column name="PLAN_ATTACH" length="80" />
+        </property>  
+        <property name="filterFlag" type="java.lang.String">
+            <column name="FILTER_FLAG"/>
+        </property>   
+         <property name="taskProjectId" type="java.lang.String">
+            <column name="TASK_PROJECT_ID"/>
+        </property>    
+		<many-to-one name="psm" class="cn.com.codes.object.SimpleUser" unique="true" column="PSM_ID"  update="false" insert="false"/>
+		<many-to-one name="testTaskDetal" class="cn.com.codes.object.TestTaskDetail" unique="true" column="TASKID"  update="false" insert="false"/>
+        <set name="useActor"  lazy="true" fetch="subselect" order-by="ACTOR" inverse="true">
+            <key column="TASKID" />
+            <one-to-many class="cn.com.codes.object.TaskUseActor"/>
+        </set>
+    </class>
+</hibernate-mapping>

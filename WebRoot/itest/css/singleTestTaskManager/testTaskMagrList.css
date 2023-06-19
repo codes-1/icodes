@@ -1,0 +1,123 @@
+#testFlowWin {
+	/* display:none; */
+	padding: 20px 25px 25px;
+}
+
+/* #_exui_textbox_input5,#_exui_textbox_input6,#_exui_textbox_input7,
+#_exui_textbox_input8,#_exui_textbox_input9,#_exui_textbox_input10,
+#_exui_textbox_input11,#_exui_textbox_input12,#_exui_textbox_input13,
+#_exui_textbox_input14{
+	width:337px;
+	height: 32px;
+	border-radius:5px;
+	font-weight: normal;
+} */
+
+/* #statusSty span {
+	position: relative;
+	top: -1px;
+	left: 2px;
+} */
+
+#secondTable tr {
+	line-height: 38px;
+}
+
+.panel-tool-close {
+    background-color: #101010;
+}
+
+.fontC {
+	color:#101010;
+	font-size: 14px;
+}
+ .searchable-select-items {
+	max-height: 90px;
+} 
+/* .panel-body {
+    padding: 25px;
+} */
+
+.has-error .form-control {
+	border-color: #ccc;
+}
+
+.form-table tr th {
+	padding-left: 0;
+}
+
+.window {
+	border: none;
+}
+
+.panel-default>.panel-heading {
+    color: #ffffff;
+    background-color: #101010;
+}
+
+.messager-body {
+    padding: 12px 10px 30px 22px;
+}
+
+.lineS {
+	border-top: 1px solid #E0E0E0;
+	margin-top: 20px;
+	width: 540px;
+}
+.testPerson{
+	color:red;
+	padding-left:24px;
+}
+.checkPadding {
+	padding:6px;
+}
+.buttonSt {
+	margin: 20px 0 25px 61%;
+}
+.fontColor {
+	color: #636363;
+	font-size: 14px;
+}
+.fontCs {
+	color: #353535;
+	font-size: 14px;
+}
+.buttonPos {
+	margin: 10px 0;
+}
+/* .panel .panel-default window panel-htop messager-window {
+	border: red;
+} */
+.datagrid-header {
+	height: 40px;
+}
+.datagrid-htable{
+	height: 40px;
+}
+.datagrid-body td{
+    padding: 11px 0;
+} 
+.panel .panel-default .window .panel-htop{
+	width: 630px;
+}
+/* .textbox .filebox > a:hover{
+	background-color: #42a5f5;
+} */
+
+/* .panel .panel-default .window .panel-htop{
+	width: 620px;
+}  */
+/* .form-control .indent-4-5::-webkit-input-placeholder{ WebKit browsers
+color: #0F87FF;
+}
+.form-control .indent-4-5::-moz-input-placeholder{ Mozilla Firefox
+color: #0F87FF;
+}
+.form-control .indent-4-5::-ms-input-placeholder{ Internet Explorer 
+color: #0F87FF;
+} */
+/**********************add media*****************************/
+/* @media screen and (max-width: 1014px){
+	
+} */
+/**********************add media*****************************/

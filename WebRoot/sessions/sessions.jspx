@@ -1,0 +1,109 @@
+<!-- 
+ Sessions management page
+  
+ @author Marco Meschieri - Logical Objects
+ @since 3.0
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component" jsfc="f:view"
+	xmlns:ldoc="http://www.logicaldoc.com/jsf" locale="#{language}">
+	<f:loadBundle basename="i18n.application" var="msgs" />
+	<f:loadBundle basename="i18n.localeInformation" var="loc" />
+	<ice:outputDeclaration doctypeRoot="html"
+		doctypePublic="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctypeSystem="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" />
+	<html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+			<title>#{StyleBean.productName} #{StyleBean.productRelease}</title>
+			<link type="image/x-icon" href="#{facesContext.externalContext.requestContextPath}#{StyleBean.imagesPath}/favicon.ico" rel="shortcut icon"/>
+			<ice:outputText style="padding-top:0px; padding-bottom:0px;"
+				value="#{StyleBean.style}" escape="false" />
+			<ice:outputStyle href="#{StyleBean.cssPath}/style.css" />
+		</head>
+		<body
+			style="font-size: 10pt; font-family: Arial, Helvetica, sans-serif;">
+			<ice:panelBorder border="0" cellpadding="0" cellspacing="0"
+				styleClass="loginBorderLayout">
+				<f:facet name="center">
+					<ice:form>
+						<ice:panelGrid columns="2" style="width:700px;">
+							<ice:graphicImage url="#{StyleBean.imagesPath}/logo.gif"
+								style="padding-left: 10px;" />
+							<ice:outputText value="#{msgs['sessions']}"
+								style="font-size: 20px; font-weight: bold; font-family: Trebuchet MS, Tahoma, Myriad; color:#7F7F7F;" />
+						</ice:panelGrid>
+
+
+						<ice:dataTable id="sessions" width="700px"
+							value="#{SessionsBean.sessions}" var="userSession"
+							cellpadding="0" rows="20"
+							columnClasses="dateColumn,dateColumn,dateColumn,dateColumn,dateColumn">
+
+							<ice:column>
+								<f:facet name="header">
+									<ice:outputText value="#{msgs['identifier']}" />
+								</f:facet>
+								<ice:outputText value="#{userSession.id}" />
+							</ice:column>
+
+							<ice:column>
+								<f:facet name="header">
+									<ice:outputText value="#{msgs['status']}" />
+								</f:facet>
+								<ice:outputText value="#{msgs['opened']}"  rendered="#{userSession.status==0}" />
+								<ice:outputText value="#{msgs['timeout']}"  rendered="#{userSession.status==1}" style="color:red" />
+								<ice:outputText value="#{msgs['closed']}"  rendered="#{userSession.status==2}" style="color:red" />
+							</ice:column>
+
+							<ice:column>
+								<f:facet name="header">
+									<ice:outputText value="#{msgs['username']}" />
+								</f:facet>
+								<ice:outputText value="#{userSession.userName}" />
+							</ice:column>
+
+							<ice:column>
+								<f:facet name="header">
+									<ice:outputText value="#{msgs['createdon']}" />
+								</f:facet>
+								<h:outputText value="#{userSession.creation}">
+									<f:convertDateTime pattern="#{loc.dateFormat}"
+										timeZone="#{StyleBean.timeZone}" />
+								</h:outputText>
+							</ice:column>
+
+							<ice:column>
+								<f:facet name="header">
+									<ice:outputText value="#{msgs['lastrenew']}" />
+								</f:facet>
+								<h:outputText value="#{userSession.lastRenew}">
+									<f:convertDateTime pattern="#{loc.dateFormat}"
+										timeZone="#{StyleBean.timeZone}" />
+								</h:outputText>
+							</ice:column>
+
+							<ice:column>
+								<f:facet name="header">
+									<ice:outputText value="#{msgs['kill']}" />
+								</f:facet>
+								<ice:commandLink action="#{SessionsBean.kill}"
+									rendered="#{userSession.status==0}">
+									<ice:graphicImage value="#{StyleBean.imagesPath}/delete.png"
+										style="border: 0px solid;" title="#{msgs['kill']}" />
+								</ice:commandLink>
+							</ice:column>
+						</ice:dataTable>
+
+						<ice:panelGroup>
+							<ldoc:paginator table="sessions"
+								label="#{msgs['paginator.simple']}" />
+						</ice:panelGroup>
+					</ice:form>
+				</f:facet>
+			</ice:panelBorder>
+		</body>
+	</html>
+</jsp:root>

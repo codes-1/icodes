@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping  package="cn.com.codes.object">
+    <class name="cn.com.codes.object.MissionLog" table="t_mission_log">
+    <cache usage="read-write" region="cn.com.codes.object.MissionLog"/>
+        <id name="logId" type="java.lang.String">
+            <column name="log_id" length="32" not-null="true" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="missionId" type="java.lang.String">
+            <column name="mission_id" length="32" not-null="true"/>
+        </property>
+        <property name="operateType" type="java.lang.String">
+            <column name="operate_type" length="1"/>
+        </property>
+        <property name="operatePerson" type="java.lang.String">
+            <column name="operate_person" length="64"/>
+        </property>
+        <property name="operateDetail" type="java.lang.String">
+            <column name="operate_detail" length="255"/>
+        </property>
+        <property name="operateTime" type="java.util.Date">
+            <column name="operate_time" length="7"/>
+        </property>
+    </class>
+</hibernate-mapping>

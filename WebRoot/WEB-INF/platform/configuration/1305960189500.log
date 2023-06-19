@@ -1,0 +1,87 @@
+!SESSION 2011-05-21 14:43:41.578 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.6.0_05
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=zh_CN
+
+!ENTRY org.eclipse.core.runtime.compatibility 4 0 2011-05-21 14:43:41.578
+!MESSAGE 
+!STACK 0
+org.osgi.framework.BundleException: Exception in org.eclipse.core.internal.plugins.CompatibilityActivator.stop() of bundle org.eclipse.core.runtime.compatibility.
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.stop(BundleContextImpl.java:863)
+	at org.eclipse.osgi.framework.internal.core.BundleHost.stopWorker(BundleHost.java:474)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.suspend(AbstractBundle.java:546)
+	at org.eclipse.osgi.framework.internal.core.Framework.suspendBundle(Framework.java:1098)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.decFWSL(StartLevelManager.java:593)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStartLevel(StartLevelManager.java:261)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.shutdown(StartLevelManager.java:216)
+	at org.eclipse.osgi.framework.internal.core.InternalSystemBundle.suspend(InternalSystemBundle.java:266)
+	at org.eclipse.osgi.framework.internal.core.Framework.shutdown(Framework.java:685)
+	at org.eclipse.osgi.framework.internal.core.Framework.close(Framework.java:583)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.shutdown(EclipseStarter.java:409)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.birt.core.framework.osgi.OSGILauncher.doShutdown(OSGILauncher.java:426)
+	at org.eclipse.birt.core.framework.osgi.OSGILauncher.access$1(OSGILauncher.java:404)
+	at org.eclipse.birt.core.framework.osgi.OSGILauncher$2.run(OSGILauncher.java:397)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.birt.core.framework.osgi.OSGILauncher.shutdown(OSGILauncher.java:393)
+	at org.eclipse.birt.core.framework.Platform.shutdown(Platform.java:101)
+	at org.eclipse.birt.report.listener.ViewerServletContextListener.contextDestroyed(ViewerServletContextListener.java:42)
+	at org.apache.catalina.core.StandardContext.listenerStop(StandardContext.java:4011)
+	at org.apache.catalina.core.StandardContext.stop(StandardContext.java:4615)
+	at org.apache.catalina.core.StandardContext.start(StandardContext.java:4512)
+	at org.apache.catalina.core.StandardContext.reload(StandardContext.java:3228)
+	at org.apache.catalina.loader.WebappLoader.backgroundProcess(WebappLoader.java:403)
+	at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1309)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1601)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1610)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1610)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1590)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.OutOfMemoryError: PermGen space
+Root exception:
+java.lang.OutOfMemoryError: PermGen space
+
+!ENTRY org.eclipse.equinox.registry 4 0 2011-05-21 14:43:43.140
+!MESSAGE 
+!STACK 0
+org.osgi.framework.BundleException: Exception in org.eclipse.core.internal.registry.osgi.Activator.stop() of bundle org.eclipse.equinox.registry.
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.stop(BundleContextImpl.java:863)
+	at org.eclipse.osgi.framework.internal.core.BundleHost.stopWorker(BundleHost.java:474)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.suspend(AbstractBundle.java:546)
+	at org.eclipse.osgi.framework.internal.core.Framework.suspendBundle(Framework.java:1098)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.decFWSL(StartLevelManager.java:593)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStartLevel(StartLevelManager.java:261)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.shutdown(StartLevelManager.java:216)
+	at org.eclipse.osgi.framework.internal.core.InternalSystemBundle.suspend(InternalSystemBundle.java:266)
+	at org.eclipse.osgi.framework.internal.core.Framework.shutdown(Framework.java:685)
+	at org.eclipse.osgi.framework.internal.core.Framework.close(Framework.java:583)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.shutdown(EclipseStarter.java:409)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.birt.core.framework.osgi.OSGILauncher.doShutdown(OSGILauncher.java:426)
+	at org.eclipse.birt.core.framework.osgi.OSGILauncher.access$1(OSGILauncher.java:404)
+	at org.eclipse.birt.core.framework.osgi.OSGILauncher$2.run(OSGILauncher.java:397)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.birt.core.framework.osgi.OSGILauncher.shutdown(OSGILauncher.java:393)
+	at org.eclipse.birt.core.framework.Platform.shutdown(Platform.java:101)
+	at org.eclipse.birt.report.listener.ViewerServletContextListener.contextDestroyed(ViewerServletContextListener.java:42)
+	at org.apache.catalina.core.StandardContext.listenerStop(StandardContext.java:4011)
+	at org.apache.catalina.core.StandardContext.stop(StandardContext.java:4615)
+	at org.apache.catalina.core.StandardContext.start(StandardContext.java:4512)
+	at org.apache.catalina.core.StandardContext.reload(StandardContext.java:3228)
+	at org.apache.catalina.loader.WebappLoader.backgroundProcess(WebappLoader.java:403)
+	at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1309)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1601)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1610)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1610)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1590)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.OutOfMemoryError: PermGen space
+Root exception:
+java.lang.OutOfMemoryError: PermGen space

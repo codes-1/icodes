@@ -1,0 +1,121 @@
+.manualPage{
+	background: #ffffff;
+	height: 100%;
+	width:100%;
+}
+.wrapper {
+    padding: 0px;
+}
+.contentIt {
+    width: 94%;
+    float: left;
+    margin: 7% 3%;
+}
+.leftCons{
+	border: 2px dashed #D5D5D5;
+	border-radius: 5px;
+	width: 78%;
+	float: left;
+}
+.title{
+	width: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    word-wrap: break-word;
+    margin: 7.7em 0 7.7em 38%;
+    letter-spacing: 20px;
+}
+.titles{
+	width:20px;
+    font-size:18px;
+    font-weight:bold;
+    word-wrap:break-word;
+    margin: 7.7em 0 7.7em 38%;
+    letter-spacing: 20px;
+}
+.leftP{
+	width: 7%;
+	display: inline-block;
+}
+.proFlow{
+	width: 93%;
+	float: right; 
+	margin: 2.5em 0;
+}
+.testPro{
+	border: 1px solid #D5D5D5;
+	margin-top: 1em;
+	height:215px;
+}
+.testPro img {
+	padding-top: 13px; 
+}
+.proUl {
+	margin-top:13px;
+	border-top: 1px dashed #D5D5D5;
+}
+.proUl ul {
+	padding-left: 23.5px;
+    padding-top: 0.6em;
+}
+.proUl ul li{
+	padding: 4px 0;
+}
+.first {
+	/* width: 17.7%;
+	display: inline-block; */
+}
+.rightP {
+	width: 27%;
+	float: left;  
+}
+.proFlows{
+	width: 73%;
+	float: right; 
+	margin: 2.5em 0;
+}
+.second{
+	width: 90%; 
+}
+@media screen and (max-width:1200px) {
+	.rightCon { 
+	border: 2px dashed #D5D5D5;
+	border-radius: 5px;
+	width: 78%;
+	float: left;
+}
+	.rightP {
+	    width: 7%;
+	    float: left;
+	    }
+	.proFlows {
+	    width: 93%;
+	    }
+} 
+@media screen and (min-width:1201px) {
+	.rightCon {
+	border: 2px dashed #D5D5D5;
+	border-radius: 5px;
+	width: 19.5%;
+	float: right;
+}
+   .col-lg-2{
+   width:20%
+   }
+
+}
+.datagrid-header {
+	height: 40px;
+}
+.datagrid-htable{
+	height: 40px;
+}
+.datagrid-body td{
+    padding: 11px 0;
+} 
+body{
+	font-size:13px;
+}
+/* .panel .panel-default .datagrid .panel-htop .exui-fluid{
+	width: 1254px;
+} */

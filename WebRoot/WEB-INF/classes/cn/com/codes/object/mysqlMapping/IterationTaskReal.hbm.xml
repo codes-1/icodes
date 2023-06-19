@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.com.codes.object" >
+	<class name="IterationTaskReal" table="t_iteration_task_real" dynamic-update="true">
+	<cache usage="read-write" region="cn.com.codes.object.IterationTaskReal"/>
+		<id name="iterationMissionId" type="java.lang.String">
+			<column name="iteration_mission_id" length="32" not-null="true" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="iterationId" type="java.lang.String">
+			<column name="iteration_id" length="32" not-null="true"/>
+		</property>
+		<property name="missionId" type="java.lang.String">
+			<column name="mission_id" length="32" not-null="true"/>
+		</property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,107 @@
+#bugAddOrEditWindown {
+    max-height: 38em;
+    padding-top:0;
+}
+#bugAddOrEditWindown .textbox.combo {
+	vertical-align: top;
+}
+
+#bugAddOrEditWindown table tr td:FIRST-CHILD {
+	text-align: right;
+	/* padding-right: 0.5em; */
+}
+
+.left_td{
+	text-align: right;
+	white-space: nowrap;
+	/* padding-right: 0.5em; */
+	width: 85px;
+}
+
+sup {
+	vertical-align: middle;
+	top: 0!important; 
+}
+
+.has-error .form-control {
+	border-color: #ccc;
+}
+
+.graybtn{
+	font-size: 14px;
+	border: 1px solid;
+	padding: 6px;
+}
+.fontCs {
+	font-size: 14px;
+}
+#secondTable tr {
+	line-height: 45px;
+}
+#secondTables tr {
+	line-height: 45px;
+}
+.moveRight {
+	padding-left: 50px;
+}
+.first{
+	margin-top: 5px;
+    margin-left: 7px;
+}
+.textbox {
+	/* margin-top: 5px; */
+	vertical-align: top;
+	display: inline-table;
+}
+.datagrid-header {
+	height: 40px;
+}
+.datagrid-htable{
+	height: 40px;
+}
+.datagrid-body td{
+	padding: 11px 0;
+}
+
+.combobox-item {
+    height: 30px;
+    /* border-bottom: 1px dotted #ccc; */
+}
+
+#personChoose .textbox.combo {position: static;}
+#chooseUserWin .input-field > span {
+    position: relative;
+    left: 0; 
+    top: -28px;
+}
+
+#findChooseUserWin .input-field > span {
+    position: relative;
+    left: 0; 
+    top: -23px;
+}
+
+.file-preview-image {
+    font: 14px Impact, Charcoal, sans-serif;
+}
+
+.messagecss {
+	position: absolute;
+    top: -0.5em;
+    right: -0.5em;
+}
+
+.fileCount {
+	display:none;
+	width: 18px;
+    height: 18px;
+    text-align: center;
+    position: absolute;
+    top: -0.8em;
+    right: -3em;
+    /* left:7em; */
+    color: #5684fe;
+    border: 1px solid #5684fe;
+    border-radius: 18px;
+    font-size: 11px;
+}

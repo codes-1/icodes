@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cn.com.codes.object">
+    <class name="TestCase_CasePkg" table="t_testcase_casepkg" >
+    <cache usage="read-write" region="cn.com.codes.object.TestCase_CasePkg"/>
+        <id name="pkgCaseId" type="java.lang.String">
+            <column name="id" length="32" />
+            <generator class="uuid.hex" />
+        </id>
+        
+        <property name="packageId" type="java.lang.String">
+            <column name="packageId" length="250" />
+        </property>
+        <property name="testCaseId" type="java.lang.String">
+            <column name="testcaseId" length="250" />
+        </property>
+        
+         <property name="executorId" type="java.lang.String">
+	    	<column name="executorId" length="32" />
+		</property>
+		
+	   <property name="execStatus" type="java.lang.Integer">
+	    	<column name="execStatus" length="2" />
+		</property>
+    </class>
+</hibernate-mapping>

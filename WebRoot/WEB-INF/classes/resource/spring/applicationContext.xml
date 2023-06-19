@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	 xmlns:amq="http://activemq.apache.org/schema/core"  
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd 
+           http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd"
+	default-autowire="byName" default-lazy-init="false">
+	<bean id="PropertyPlaceholderConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+		lazy-init="false" abstract="false" autowire="default"
+		dependency-check="default">
+		<property name="locations">
+			<list merge="default">
+				<value>
+					classpath*:/resource/spring/configure.properties
+				</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="DataSource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass">
+			<value>${config.db.driver}</value>
+		</property>
+		<property name="jdbcUrl">
+			<value>${config.db.url}</value>
+		</property>
+		<property name="user">
+			<value>${config.db.user}</value>
+		</property>
+		<property name="password">
+			<value>${config.db.password}</value>
+		</property>
+		<property name="initialPoolSize">
+			<value>10</value>
+		</property>
+		<property name="minPoolSize">
+			<value>20</value>
+		</property>
+		<property name="maxPoolSize">
+			<value>350</value>
+		</property>
+		<property name="checkoutTimeout">
+			<value>5000</value>
+		</property>
+		<property name="maxIdleTime">
+			<value>180</value>
+		</property>
+		<property name="acquireRetryAttempts">
+			<value>5</value>
+		</property>
+		<property name="idleConnectionTestPeriod">
+			<value>60</value>
+		</property>
+		<property name="acquireIncrement">
+			<value>5</value>
+		</property>
+	</bean>
+
+	<bean id="SessionFactory" lazy-init="false"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref local="DataSource" />
+		</property>
+		<property name="mappingLocations">
+			<list>
+				<value>
+					classpath:cn/com/codes/object/mysqlMapping/*.hbm.xml
+				</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQL5Dialect
+				</prop>
+				<prop key="hibernate.show_sql">
+					false
+				</prop>
+				<prop key="current_session_context_class">thread</prop>
+				<prop key="hibernate.cache.use_second_level_cache">
+					true
+				</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.provider_class">
+					org.hibernate.cache.EhCacheProvider
+				</prop>	
+				
+				<prop key="hibernate.hbm2ddl.auto">
+					update 
+				</prop>	
+				 				
+			</props>
+		</property>
+	</bean>
+	<bean id="hibernateTemplate" lazy-init="false"
+		class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory">
+			<ref local="SessionFactory" />
+		</property>
+		<property name="cacheQueries" value="true" />
+	</bean>
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="DataSource" />
+	</bean>
+	
+	<bean id="jdbcTemplateWrapper" class="cn.com.codes.framework.jdbc.JdbcTemplateWrapper">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+		<property name="showSql" value="false" />
+		<property name="mysqlLowerCaseTableNames" value="false" />
+		
+	</bean>
+	<bean name="hibernateGenericController" lazy-init="false"
+		class="cn.com.codes.framework.hibernate.HibernateGenericController">
+		<property name="cacheQueries" value="true" />
+	</bean>
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="SessionFactory" />
+		</property>
+	</bean>
+	<!-- 支持 @Transactional 标记 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<!-- 支持 @AspectJ 标记-->
+	<aop:aspectj-autoproxy />
+	<!-- 基本事务定义,使用transactionManager作事务管理,默认get*方法的事务为readonly,其余方法按默认设置.
+		默认的设置请参考Spring文档事务一章. -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" propagation="REQUIRES_NEW"
+				rollback-for="BaseException,DataBaseException" />
+			<tx:method name="find*" propagation="REQUIRES_NEW"
+				read-only="true" />
+			<tx:method name="query*" propagation="REQUIRES_NEW"
+				read-only="true" />
+			<tx:method name="load*" propagation="REQUIRES_NEW" />
+			<tx:method name="submit*" propagation="REQUIRED"
+				rollback-for="BaseException,DataBaseException" />
+			<tx:method name="save*" propagation="REQUIRED"
+				rollback-for="BaseException,DataBaseException" />
+			<tx:method name="update*" propagation="REQUIRED"
+				rollback-for="BaseException,DataBaseException" />
+			<tx:method name="*delete*" propagation="REQUIRED"
+				rollback-for="BaseException,DataBaseException" />
+			<tx:method name="*add*" propagation="REQUIRED"
+				rollback-for="BaseException,DataBaseException" />
+			<tx:method name="change*" propagation="REQUIRED"
+				rollback-for="BaseException,DataBaseException" />
+			<tx:method name="execute*" propagation="REQUIRED"
+				rollback-for="BaseException,DataBaseException" />
+			<tx:method name="exeCase" propagation="REQUIRED"
+				rollback-for="BaseException,DataBaseException" />
+			<tx:method name="move*" propagation="REQUIRED"
+				rollback-for="BaseException,DataBaseException" />
+			<tx:method name="hand*" propagation="REQUIRED"
+				rollback-for="BaseException,DataBaseException" />
+			<tx:method name="login" propagation="REQUIRED"
+				rollback-for="BaseException,DataBaseException" />
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- 以AspectJ方式 定义 AOP -->
+	<!--  aop:config proxy-target-class="true"-->
+	<aop:config>
+		<aop:advisor
+			pointcut="execution(* cn.com.codes..service.*Service*.*(..))"
+			advice-ref="txAdvice" />
+		<aop:advisor
+			pointcut="execution(* cn.com.codes.core.security.SecurityPrivilegeImpl.*(..))"
+			advice-ref="txAdvice" />
+	</aop:config>
+	<bean id="Context" class="cn.com.codes.framework.common.util.Context"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default" />
+	<bean id="securityPrivilege"
+		class="cn.com.codes.core.security.SecurityPrivilegeImpl"
+		scope="singleton">
+		<property name="scanInterval" value="30"></property>
+	</bean>
+	<bean id="drawHtmlListDateService"
+		class="cn.com.codes.common.service.impl.DrawHtmlListDateServiceImpl"
+		scope="singleton">
+	</bean>
+	<bean id="myPmbaseService"
+		class="cn.com.codes.framework.app.services.BaseServiceImpl"
+		scope="singleton">
+	</bean>
+	<bean id="ContextProperties"
+		class="cn.com.codes.framework.common.config.PropertiesBean"
+		lazy-init="default" autowire="default" dependency-check="default" />
+	<!-- 
+	<bean id="buttonContainerService"
+		class="cn.com.codes.framework.security.ButtonContainerService"
+		scope="singleton">
+		<constructor-arg
+			type="cn.com.codes.framework.hibernate.HibernateGenericController">
+			<ref bean="hibernateGenericController" />
+		</constructor-arg>
+		<property name="imagesDirec"
+			value="../dhtmlx/toolbar/images/">
+		</property>
+	</bean>
+	 
+	<bean id="viewScene"
+		class="org.eclipse.birt.report.listener.data.oda.ViewSceneImpl" scope="singleton">
+	</bean>
+	-->
+	<bean id="commonBlh" class="cn.com.codes.common.blh.CommonBlh">
+	</bean>
+	<bean id="mypmCommonMsgService"
+		class="cn.com.codes.msgManager.service.impl.CommonMsgServiceImpl"
+		scope="singleton">
+	</bean>
+	<bean id="commonMsgBlh"
+		class="cn.com.codes.msgManager.blh.CommonMsgBlh" scope="singleton">
+	</bean>
+	<amq:broker useJmx="false" persistent="false">
+		<amq:destinations>
+			<amq:queue id="jms.log" physicalName="active.jms.log" />
+		</amq:destinations>
+		<amq:transportConnectors>
+			<amq:transportConnector uri="${itest.jms.url}" />
+		</amq:transportConnectors>
+	</amq:broker>
+	<bean id="jmsTemplate"
+		class="org.springframework.jms.core.JmsTemplate" scope="singleton">
+		<property name="connectionFactory">
+			<bean
+				class="org.springframework.jms.connection.SingleConnectionFactory">
+				<property name="targetConnectionFactory"
+					ref="jmsConnectionFactory" />
+			</bean>
+		</property>
+		<property name="messageConverter" ref="commonMessageConverter" />
+	</bean>
+	<bean id="commonMessageConverter"
+		class="cn.com.codes.framework.jms.CommonMessageConverter" scope="singleton"/>
+	<bean id="logMessageProducer"
+		class="cn.com.codes.framework.jms.log.LogProducer" scope="singleton">
+		<property name="template" ref="jmsTemplate" />
+		<property name="destination" ref="destination" />
+	</bean>
+	<bean id="mailProducer"
+		class="cn.com.codes.framework.jms.mail.MailProducer" scope="singleton">
+		<property name="template" ref="jmsTemplate" />
+		<property name="destination" ref="destination" />
+	</bean>
+	<bean id="messageListener"
+		class="org.springframework.jms.listener.adapter.MessageListenerAdapter" scope="singleton">
+		<constructor-arg>
+			<bean
+				class="cn.com.codes.framework.jms.CommonMessageListener">
+				<property name="hc">
+					<ref bean="hibernateGenericController" />
+				</property>
+				<property name="mailSender">
+					<ref bean="mailSender" />
+				</property>
+			</bean>
+		</constructor-arg>
+		<property name="defaultListenerMethod" value="listener" />
+		<property name="messageConverter" ref="commonMessageConverter" />
+	</bean>
+	<bean id="listenerContainer"
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer" scope="singleton">
+		<property name="connectionFactory" ref="jmsConnectionFactory" />
+		<property name="destination" ref="destination" />
+		<property name="messageListener" ref="messageListener" />
+	</bean>
+	<bean id="buildLog"
+		class="cn.com.codes.core.security.buildLogImp" scope="singleton">
+	</bean>
+	<bean id="securityLog"
+		class="cn.com.codes.framework.security.SecurityLogImpl" scope="singleton">
+		<property name="logProducer">
+			<ref bean="logMessageProducer" />
+		</property>
+		<property name="buildLog">
+			<ref bean="buildLog" />
+		</property>
+		<property name="hc">
+			<ref bean="hibernateGenericController" />
+		</property>
+	</bean>
+    <!-- 客户端配置 start -->
+	<amq:connectionFactory id="jmsConnectionFactory"
+		brokerURL="${itest.jms.url}" />
+	<amq:queue name="destination" physicalName="active.jms.log" />
+ 	<!-- 客户端配置 end -->
+ 	<bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="${smtp.host}" />
+		<property name="port" value="${smtp.port}" />
+		<property name="username" value="${smtp.username}" />
+		<property name="password" value="${smtp.password}" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.timeout">25000</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="userManagerService"
+		class="cn.com.codes.userManager.service.impl.UserManagerServiceImpl"
+		scope="singleton">
+	</bean>
+	<bean id="userManagerBlh"
+		class="cn.com.codes.userManager.blh.UserManagerBlh"
+		scope="singleton">
+	</bean>
+	<bean id="roleBlh" class="cn.com.codes.roleManager.blh.RoleBlh"
+		scope="singleton">
+	</bean>
+
+	<bean id="roleService"
+		class="cn.com.codes.roleManager.service.impl.RoleServiceImpl"
+		scope="singleton">
+	</bean>
+	<bean id="testTaskService"
+		class="cn.com.codes.testTaskManager.service.impl.TestTaskDetailServiceImpl"
+		scope="singleton">
+	</bean>
+	<bean id="testTaskBlh"
+		class="cn.com.codes.testTaskManager.blh.TestTaskDetailBlh"
+		scope="singleton">
+	</bean>
+	<bean id="outLineService"
+		class="cn.com.codes.outlineManager.service.impl.OutLineManagerServiceImpl"
+		scope="singleton">
+	</bean>
+	<bean id="outLineBlh"
+		class="cn.com.codes.outlineManager.blh.OutLineManagerBlh"
+		scope="singleton">
+	</bean>
+	<bean id="caseService"
+		class="cn.com.codes.caseManager.service.impl.CaseManagerServiceImpl"
+		scope="singleton">
+	</bean>
+	<bean id="caseBlh"
+		class="cn.com.codes.caseManager.blh.CaseManagerBlh"
+		scope="singleton">
+	</bean>
+	<bean id="bugFlowControlService"
+		class="cn.com.codes.bugManager.service.impl.BugFlowControlServiceImp"
+		scope="singleton">
+	</bean>
+	<bean id="bugCommonService"
+		class="cn.com.codes.bugManager.service.impl.BugCommonServiceImpl"
+		scope="singleton">
+	</bean>
+	<bean id="bugManagerService"
+		class="cn.com.codes.bugManager.service.impl.BugManagerServiceImpl"
+		scope="singleton">
+	</bean>
+	<bean id="bugShortMsgBlh"
+		class="cn.com.codes.bugManager.blh.BugShortMsgBlh" scope="singleton">
+	</bean>
+	<bean id="userInfoRecover"
+		class="cn.com.codes.core.blh.RecoverUserInfoImpl" scope="singleton">
+	</bean>
+	<bean id="relaCaseBlh"
+		class="cn.com.codes.bugManager.blh.RelaCaseBlh" scope="singleton">
+	</bean>
+	<bean id="bugFlowControlBlh"
+		class="cn.com.codes.bugManager.blh.BugFlowControlBlh"
+		scope="singleton">
+	</bean>
+	<bean id="bugManagerBlh"
+		class="cn.com.codes.bugManager.blh.BugManagerBlh" scope="singleton">
+	</bean>
+	
+	<bean id="testBaseSetService"
+		class="cn.com.codes.testBaseSet.service.impl.TestBaseSetServiceImpl" scope="singleton">
+	</bean>
+	<bean id="testBaseSetBlh"
+		class="cn.com.codes.testBaseSet.blh.TestBaseSetBlh" scope="singleton">
+	</bean>
+	<bean id="singleTestTaskService"
+		class="cn.com.codes.singleTestTaskManager.service.impl.SingleTestTaskServiceImpl" scope="singleton">
+	</bean>
+	<bean id="singleTestTaskBlh"
+		class="cn.com.codes.singleTestTaskManager.blh.SingleTestTaskBlh" scope="singleton">
+	</bean>
+	<bean id="analysisBlh" class="cn.com.codes.analysisManager.blh.AnalysisBlh" scope="singleton"></bean>
+	<bean id="analysisService" class="cn.com.codes.analysisManager.service.impl.AnalysisServiceImpl" scope="singleton"></bean>
+	<bean id="viewListener"
+		class="org.eclipse.birt.report.listener.data.oda.ViewListener" scope="singleton">
+	</bean>	
+	<bean id="birtHelper"
+		class="org.eclipse.birt.report.listener.data.oda.BirtHelper"
+		scope="singleton">
+	</bean>
+	<bean id="birtAdvisor"
+		class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="advice" ref="birtHelper"></property>
+		<property name="pointcut" ref="viewListener"></property>
+	</bean>
+	<bean id="impExpManagerService"
+		class="cn.com.codes.impExpManager.service.impl.ImpExpManagerServiceImpl"
+		scope="singleton">
+	</bean>
+	<bean id="bugImpExpBlh"
+		class="cn.com.codes.impExpManager.blh.BugImpExpBlh"
+		scope="singleton">
+	</bean>
+	<bean id="caseImpExpBlh"
+		class="cn.com.codes.impExpManager.blh.CaseImpExpBlh"
+		scope="singleton">
+	</bean>
+	<!-- 其他任务bean -->
+	<bean id="otherMissionService"
+		class="cn.com.codes.otherMission.service.impl.OtherMissionServiceImpl" scope="singleton">
+	</bean>
+	<bean id="otherMissionBlh"
+		class="cn.com.codes.otherMission.blh.OtherMissionBlh" scope="singleton">
+	</bean>
+	<!-- 迭代列表bean -->
+	<bean id="iterationService"
+		class="cn.com.codes.iteration.service.impl.IterationServiceImpl" scope="singleton">
+	</bean>
+	<bean id="iterationBlh"
+		class="cn.com.codes.iteration.blh.IterationBlh" scope="singleton">
+	</bean>
+	<!-- 用例包管理  -->
+		 <bean id="testCasePackageService"
+			class="cn.com.codes.testCasePackageManage.service.impl.TestCasePackageServiceImpl" scope="singleton">
+		</bean>
+		<bean id="testCasePackageBlh"
+			class="cn.com.codes.testCasePackageManage.blh.TestCasePackageBlh" scope="singleton">
+		</bean>
+	<!-- /用例包管理 -->
+	
+	<!-- 测试用例库bean -->
+	<bean id="testLibraryService"
+		class="cn.com.codes.testLibrary.service.impl.TestLibraryServiceImpl" scope="singleton">
+	</bean>
+	<bean id="testLibraryBlh"
+		class="cn.com.codes.testLibrary.blh.TestLibraryBlh" scope="singleton">
+	</bean>
+	
+	<!-- 总览bean -->
+	<bean id="overviewBlh"
+		class="cn.com.codes.overview.blh.OverviewBlh" scope="singleton">
+	</bean>
+	<!--文件信息 -->
+	
+	<bean id="fileInfoBlh"
+		class="cn.com.codes.fileInfo.blh.FileInfoBlh" scope="singleton">
+	</bean>
+	<bean id="fileInfoService"
+		class="cn.com.codes.fileInfo.service.impl.FileInfoServiceImpl"
+		scope="singleton">
+	</bean>
+	
+</beans>

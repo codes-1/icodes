@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.com.codes.object" >
+	<class name="SimpleUser" table="T_USER" dynamic-update="true">
+	<cache usage="read-only" region="cn.com.codes.object.User"/>
+		<id name="id" type="java.lang.String">
+			<column name="ID" length="32" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="loginName" type="java.lang.String">
+			<column name="LOGINNAME" length="32" not-null="true" />
+		</property>
+		<property name="name" type="java.lang.String">
+			<column name="NAME" length="32" not-null="true" />
+		</property>
+	</class>
+</hibernate-mapping>

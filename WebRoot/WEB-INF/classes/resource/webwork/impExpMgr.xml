@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE xwork PUBLIC 
+	"-//OpenSymphony Group//XWork 1.1.1//EN"
+	"http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="impExpMgr" extends="default" namespace="/impExpMgr">
+		<action name="bugImpExpAction"
+			class="cn.com.mypm.impExpManager.web.BugImpExpAction">
+			<result name="success" type="stream">
+				<param name="contentType">
+					application/x-msdownload;charset=utf-8
+				</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">
+					attachment;filename="bugExport.xls"
+				</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<action name="caseImpExpAction"
+			class="cn.com.mypm.impExpManager.web.CaseImpExpAction">
+			<result name="success" type="stream">
+				<param name="contentType">
+					application/x-msdownload;charset=utf-8
+				</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">
+					attachment;filename="caseExport.xls"
+				</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>	
+		<action name="caseBugImpAction"
+			class="cn.com.mypm.impExpManager.web.CaseBugImpAction">
+			<result name="success">
+				/jsp/caseManager/importCase.jsp
+			</result>
+		</action>	
+	</package>
+</xwork>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE xwork PUBLIC 
+	"-//OpenSymphony Group//XWork 1.1.1//EN"
+	"http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+
+<xwork>
+	<package name="testTask" extends="default"
+		namespace="/testTaskManager">
+		<action name="testTaskManagerAction"
+			class="cn.com.mypm.testTaskManager.web.TestTaskDetailAction">
+			<result name="flwSetInit">
+				/jsp/testTaskManager/testTaskManager.jsp
+			</result>
+			<result name="flwSetInitSingle">
+				/jsp/testTaskManager/singleTestTaskFlwSet.jsp
+			</result>
+			<result name="choiceTask" type="redirect">
+				/singleTestTask/singleTestTaskAction!flwSetList.action
+			</result>
+			<result name="ajaxRest">
+				/jsp/testTaskManager/TestTaskManagerResult.txt
+			</result>
+		</action>
+	</package>
+	<package name="outLine" extends="default"
+		namespace="/outLineManager">
+		<action name="outLineAction"
+			class="cn.com.mypm.outlineManager.web.OutLineManagerAction">
+			<result name="loadTree">
+				/jsp/outlineManager/outlineTree.jsp
+			</result>
+			<result name="initList">
+				/jsp/outlineManager/functionList.jsp
+			</result>
+			<result name="index">
+				/jsp/outlineManager/testRequirementMain.jsp
+			</result>
+		</action>
+	</package>
+
+	<package name="case" extends="default" namespace="/caseManager">
+		<action name="caseManagerAction"
+			class="cn.com.mypm.caseManager.web.CaseManagerAction">
+			<result name="loadTree">
+				/jsp/caseManager/caseTree.jsp
+			</result>
+			<result name="loadCase">
+				/jsp/caseManager/caseList.jsp
+			</result>
+			<result name="viewHistory">
+				/jsp/caseManager/exeHistory.jsp
+			</result>
+			<result name="lastExeCase">
+				/jsp/caseManager/lastExeCase.jsp
+			</result>
+			<result name="batchAuditInit">
+				/jsp/caseManager/batchAuditList.jsp
+			</result>
+			<result name="viewCaseHistory">
+				/jsp/caseManager/caseHistory.jsp
+			</result>
+			<result name="loadCaseBoard">
+				/jsp/caseManager/caseBoard.jsp
+			</result>
+			<result name="index">
+				/jsp/caseManager/caseMgrMain.jsp
+			</result>			
+		</action>
+	</package>
+	<package name="bug" extends="default" namespace="/bugManager">
+		<action name="bugManagerAction"
+			class="cn.com.mypm.bugManager.web.BugManagerAction">
+			<result name="loadTree">/jsp/bugManager/bugTree.jsp</result>
+			<result name="loadMyBug">
+				/jsp/bugManager/myBugList.jsp
+			</result>
+			<result name="loadAllMyBug">
+				/jsp/bugManager/myAllBugList.jsp
+			</result>
+			<result name="upInit">/jsp/bugManager/editBug.jsp</result>
+			<result name="detail">/jsp/bugManager/detail.jsp</result>
+			<result name="bugHand">/jsp/bugManager/handBug.jsp</result>
+			<result name="batchAssign">
+				/jsp/bugManager/batchAssignBugList.jsp
+			</result>
+			<result name="loadBugBoard">
+				/jsp/bugManager/bugBoard.jsp
+			</result>
+			<result name="loadReportTree">
+				/jsp/singleTestTaskManager/reportTree.jsp
+			</result>
+			<result name="index">
+				/jsp/bugManager/bugMgrMain.jsp
+			</result>	
+			<result name="loadMyBugWithModule">
+				/jsp/bugManager/bugMgrRight.jsp
+			</result>
+			<result name="loadLeftTree">
+				/jsp/bugManager/bugMgrLeftTre.jsp
+			</result>
+		</action>
+		<action name="relaCaseAction"
+			class="cn.com.mypm.bugManager.web.RelaCaseAction">
+			<result name="loadRelaCase">
+				/jsp/bugManager/relaCaseList.jsp
+			</result>
+			<result name="loadRelaBug">
+				/jsp/bugManager/relaBugList.jsp
+			</result>
+		</action>
+		<action name="bugShortMsgAction"
+			class="cn.com.mypm.bugManager.web.BugShortMsgAction">
+			<result name="loadMsgList">
+				/jsp/bugManager/bugMsgList.jsp
+			</result>
+		</action>
+	</package>
+	<package name="testBaseSet" extends="default"
+		namespace="/testBaseSet">
+		<action name="testBaseSetAction"
+			class="cn.com.mypm.testBaseSet.web.TestBaseSetAction">
+			<result name="testBaseSetList">
+				/jsp/testBaseSet/testBaseSetList.jsp
+			</result>
+		</action>
+	</package>
+	<package name="singleTestTask" extends="default"
+		namespace="/singleTestTask">
+		<action name="singleTestTaskAction"
+			class="cn.com.mypm.singleTestTaskManager.web.SingleTestTaskAction">
+			<result name="magrTaskList">
+				/jsp/singleTestTaskManager/testTaskMagrList.jsp
+			</result>
+			<result name="swTestTaskList">
+				/jsp/singleTestTaskManager/swTestTaskList.jsp
+			</result>
+			<result name="newBugSelTask">
+				/jsp/singleTestTaskManager/swTestTaskList.jsp
+			</result>
+			<result name="flwSetList">
+				/jsp/singleTestTaskManager/flwSetList.jsp
+			</result>
+			<result name="swTestTask4Report">
+				/jsp/singleTestTaskManager/swTestTask4Report.jsp
+			</result>
+		</action>
+	</package>
+</xwork>

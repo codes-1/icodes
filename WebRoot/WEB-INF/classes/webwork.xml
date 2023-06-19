@@ -1,0 +1,479 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<include file="webwork-default.xml" />
+	<!-- 自定义的webwork文件,在文件尾include 且自定义的一定要继承 default -->
+	<package name="default" extends="webwork-default">
+		<interceptors>
+			<interceptor name="urlCheck"
+				class="cn.com.codes.framework.security.UrlSecurityCheckInterceptor" />
+			<interceptor name="mypmfileUpload"
+				class="com.opensymphony.webwork.interceptor.FileUploadInterceptor">
+				<param name="allowedTypes">
+					xlsx/xls
+				</param>
+				<param name="maximumSize">10000000</param>
+			</interceptor>
+			<interceptor-stack name="default">
+				<interceptor-ref name="urlCheck" />
+				<interceptor-ref name="defaultStack" />
+				<!--interceptor-ref name="timer" / -->
+			</interceptor-stack>
+
+			<interceptor-stack name="default">
+				<interceptor-ref name="urlCheck" />
+				<interceptor-ref name="defaultStack" />
+				<!--interceptor-ref name="timer" / -->
+			</interceptor-stack>
+			<interceptor-stack name="mypmuploadStack">
+				<interceptor-ref name="urlCheck" />
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="mypmfileUpload" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="default" />
+		<default-action-ref name="welcome" />
+		<global-results>
+			<result name="globalException" type="chain">
+				baseExHandler
+			</result>
+			<result name="ajaxException">/jsp/ajaxException.txt</result>
+			<result name="globalAjaxRest">/jsp/globalAjaxRest.txt</result>
+			<result name="index">/itest/jsp/login.jsp</result>
+		</global-results>
+		<action name="baseExHandler" class="cn.com.codes.framework.exception.BaseExHandler">
+			<result name="SYSErrorPage">/jsp/errorPageSYS.jsp</result>
+		</action>
+		<action name="welcomAction" class="cn.com.codes.framework.web.action.WelcomAction">
+			<result name="success">/itest/jsp/login.jsp</result>
+		</action>
+		<action name="commonAction" class="cn.com.codes.common.web.CommonAction">
+			<result name="ajaxRest">/jsp/globalAjaxRest.txt</result>
+			<result name="loginPass" type="redirect">/jsp/common/main.jsp</result>
+			<result name="sigeLstHome">/jsp/common/main.jsp</result>
+			<result name="mutlLstHome">/jsp/myhome/myHome.jsp</result>
+			<result name="main">/jsp/common/main.jsp</result>
+			<result name="sendCodeApp">/jsp/common/sendCodeApp.jsp</result>
+			<result name="appShortTime">/jsp/common/denyCodeApp.jsp</result>
+			<result name="setActiveCode">/jsp/common/setActiveCode.jsp</result>
+			<result name="fdBackList">/jsp/feedBack/feedBackList.jsp</result>
+			<result name="handFdBack">/jsp/feedBack/handFdBack.jsp</result>
+		</action>
+	</package>
+	<package name="role" extends="default" namespace="/role">
+		<action name="roleAction" class="cn.com.codes.roleManager.web.RoleAction">
+			<result name="roleList">/itest/jsp/roleManager/roleManager.jsp</result>
+			<result name="authGrant">/itest/jsp/roleManager/authGrant.jsp</result>
+			<result name="browserAuth">/itest/jsp/roleManager/authTree.jsp</result>
+			<result name="roleUserList">/itest/jsp/roleManager/roleUserList.jsp</result>
+			<result name="userManager">/itest/jsp/roleManager/roleUserManager.jsp</result>
+			<result name="loadAuthTree">/jsp/rolemanager/authTree.jsp</result>
+		</action>
+	</package>
+	
+	
+	<package name="user" extends="default" namespace="/userManager">
+		<action name="userManagerAction" class="cn.com.codes.userManager.web.UserManagerAction">
+			<result name="adminList">
+				/jsp/userManager/companyList.jsp
+			</result>
+			
+			<result name="groupList">
+				/itest/jsp/userManager/userGroupList.jsp
+			</result>
+			<result name="userList">
+				/itest/jsp/userManager/userManager.jsp
+			</result>
+			<result name="setMyInfoInit">
+				/itest/jsp/userManager/updateUserInfo.jsp
+			</result>
+			
+			<result name="groupUserList">
+				/jsp/userManager/groupUserList.jsp
+			</result>
+			
+			<result name="userGroupMemberList">
+				/itest/jsp/userManager/userGroupMember.jsp
+			</result>
+			 
+			<result name="redctCompList" type="redirect">
+				/userManager/userManagerAction!companyList.action?message=${message}
+			</result>
+			<result name="redctUserList" type="redirect">
+				/userManager/userManagerAction!userList.action?message=${message}
+			</result>
+			<result name="login" type="redirect">
+				/jsp/userManager/login.jsp
+			</result>
+			<result name="reLogin" type="redirect">
+				/jsp/userManager/reLogin.jsp
+			</result>
+			<result name="initLogin" type="redirect">
+				/jsp/userManager/login.jsp
+			</result>
+			<result name="choiseGroups">
+				/jsp/userManager/UserManagerResult.txt
+			</result>
+			<result name="ajaxRest">
+				/jsp/userManager/UserManagerResult.txt
+			</result>
+			<result name="loginAccess" type="redirect">
+				/project/projectAction!listProjects.action
+			</result>
+			<result name="initLogin">/jsp/userManager/UserManagerResult.txt</result>
+			
+			
+			<result name="loginWithBug" type="redirect">
+				<!--  /bugManager/bugManagerAction!jump2HandlingBug.action?dto.bug.bugId=${mailBugId}-->
+				/itest/login.htm?mailBugId=${mailBugId}
+			</result>
+			<result name="loginWithBatchBug" type="redirect">
+				/bugManager/bugManagerAction!loadMyBug.action?dto.taskId=${mailBugId}
+			</result>
+			<result name="autoLogin" type="redirect">
+				/itest/login.htm?mailBugId=${mailBugId}
+			</result>
+		</action>
+	</package>
+	<package name="testTask" extends="default" namespace="/testTaskManager">
+		<action name="testTaskManagerAction"
+			class="cn.com.codes.testTaskManager.web.TestTaskDetailAction">
+			<!-- <result name="flwSetInit">
+				/jsp/testTaskManager/testTaskManager.jsp
+			</result> -->
+			<result name="itestManual">
+				/itest/jsp/itestManual/itestManual.jsp
+			</result>
+			<result name="flwSetInitSingle">
+				/jsp/testTaskManager/singleTestTaskFlwSet.jsp
+			</result>
+			<result name="choiceTask" type="redirect">
+				/singleTestTask/singleTestTaskAction!flwSetList.action
+			</result>
+			<result name="ajaxRest">
+				/jsp/testTaskManager/TestTaskManagerResult.txt
+			</result>
+		</action>
+	</package>
+	<package name="outLine" extends="default" namespace="/outLineManager">
+		<action name="outLineAction"
+			class="cn.com.codes.outlineManager.web.OutLineManagerAction">
+			<result name="loadTree">
+				/jsp/outlineManager/outlineTree.jsp
+			</result>
+			<result name="initList">
+				/jsp/outlineManager/functionList.jsp
+			</result>
+			<result name="index">
+				/itest/jsp/outlineManager/testRequirementManager.jsp
+			</result>
+		</action>
+	</package>
+
+	<package name="case" extends="default" namespace="/caseManager">
+		<action name="caseManagerAction" class="cn.com.codes.caseManager.web.CaseManagerAction">
+			<result name="loadTree">
+				/jsp/caseManager/caseTree.jsp
+			</result>
+			<result name="loadCase">
+				<!-- /itest/jsp/caseManager/caseList.jsp -->
+				/itest/jsp/testCaseManager/testCaseManager.jsp
+			</result>
+			<result name="viewHistory">
+				/jsp/caseManager/exeHistory.jsp
+			</result>
+			<result name="lastExeCase">
+				/jsp/caseManager/lastExeCase.jsp
+			</result>
+			<result name="batchAuditInit">
+				/jsp/caseManager/batchAuditList.jsp
+			</result>
+			<result name="viewCaseHistory">
+				/jsp/caseManager/caseHistory.jsp
+			</result>
+			<result name="loadCaseBoard">
+				/jsp/caseManager/caseBoard.jsp
+			</result>
+			<result name="index">
+				/jsp/caseManager/caseMgrMain.jsp
+			</result>
+			<result name="uploadDemo">
+				/itest/jsp/uploadDemo/index.jsp
+			</result>
+			<result name="caseAdd">
+				/itest/jsp/testCaseManager/addCase.jsp
+			</result>
+			<result name="caseEdit">
+				/itest/jsp/testCaseManager/editCase.jsp
+			</result>
+			<result name="caseLook">
+				/itest/jsp/testCaseManager/lookCase.jsp
+			</result>
+		</action>
+	</package>
+	<package name="bug" extends="default" namespace="/bugManager">
+		<action name="bugManagerAction" class="cn.com.codes.bugManager.web.BugManagerAction">
+			<result name="loadTree">/jsp/bugManager/bugTree.jsp</result>
+			<result name="loadMyBug">
+				/jsp/bugManager/myBugList.jsp
+			</result>
+			<result name="loadAllMyBug">
+				<!-- /jsp/bugManager/myAllBugList.jsp -->
+				/itest/jsp/bugManager/bugManagerList.jsp
+			</result>
+			<result name="upInit">/jsp/bugManager/editBug.jsp</result>
+			<result name="detail">/jsp/bugManager/detail.jsp</result>
+			<result name="bugHand">/jsp/bugManager/handBug.jsp</result>
+			<result name="batchAssign">
+				/jsp/bugManager/batchAssignBugList.jsp
+			</result>
+			<result name="loadBugBoard">
+				/jsp/bugManager/bugBoard.jsp
+			</result>
+			<result name="loadReportTree">
+				/jsp/singleTestTaskManager/reportTree.jsp
+			</result>
+			<result name="index">
+				/jsp/bugManager/bugMgrMain.jsp
+			</result>
+			<result name="loadMyBugWithModule">
+				/jsp/bugManager/bugMgrRight.jsp
+			</result>
+			<result name="loadLeftTree">
+				/jsp/bugManager/bugMgrLeftTre.jsp
+			</result>
+			<result name="bugAdd">
+				/itest/jsp/bugManager/bugAdd.jsp
+			</result>
+			<result name="bugEdit">
+				/itest/jsp/bugManager/bugEdit.jsp
+			</result>
+			<result name="bugHandView">
+				/itest/jsp/bugManager/bugHand.jsp
+			</result>
+			<result name="bugFind">
+				/itest/jsp/bugManager/bugFind.jsp
+			</result>
+			<result name="bugDetail">
+				/itest/jsp/bugManager/bugDetail.jsp
+			</result>
+			<result name="addExampleInfoPage">
+				/itest/jsp/bugManager/addExampleInfoPage.jsp
+			</result>
+		</action>
+
+		<action name="relaCaseAction" class="cn.com.codes.bugManager.web.RelaCaseAction">
+			<result name="loadRelaCase">
+				/jsp/bugManager/relaCaseList.jsp
+			</result>
+			<result name="loadRelaBug">
+				/jsp/bugManager/relaBugList.jsp
+			</result>
+		</action>
+		<action name="bugShortMsgAction" class="cn.com.codes.bugManager.web.BugShortMsgAction">
+			<result name="loadMsgList">
+				/jsp/bugManager/bugMsgList.jsp
+			</result>
+		</action>
+	</package>
+	<package name="testBaseSet" extends="default" namespace="/testBaseSet">
+		<action name="testBaseSetAction" class="cn.com.codes.testBaseSet.web.TestBaseSetAction">
+			<result name="testBaseSetList">
+				/itest/jsp/testBaseSettingManager/testSettingManager.jsp
+			</result>
+		</action>
+	</package>
+	<package name="singleTestTask" extends="default" namespace="/singleTestTask">
+		<action name="singleTestTaskAction"
+			class="cn.com.codes.singleTestTaskManager.web.SingleTestTaskAction">
+			<result name="magrTaskList">
+				/itest/jsp/singleTestTaskManager/testTaskMagrList.jsp
+				<!-- /jsp/singleTestTaskManager/testTaskMagrList.jsp -->
+			</result>
+			<result name="swTestTaskList">
+				/jsp/singleTestTaskManager/swTestTaskList.jsp
+			</result>
+			<result name="newBugSelTask">
+				/jsp/singleTestTaskManager/swTestTaskList.jsp
+			</result>
+			<result name="flwSetList">
+				/jsp/singleTestTaskManager/flwSetList.jsp
+			</result>
+			<result name="swTestTask4Report">
+				/jsp/singleTestTaskManager/swTestTask4Report.jsp
+			</result>
+		</action>
+	</package>
+	<package name="msgManager" extends="default" namespace="/msgManager">
+		<action name="commonMsgAction" class="cn.com.codes.msgManager.web.CommonMsgAction">
+			<result name="loadMsg">
+				/jsp/broadcastMsg/brocdcastMsgList.jsp
+			</result>
+			<result name="loadRecevMsg">
+				/jsp/broadcastMsg/myRecevBroMsgList.jsp
+			</result>
+			<result name="loadSendMsg">
+				/jsp/broadcastMsg/mySendBroMsgList.jsp
+			</result>
+		</action>
+	</package>
+	<package name="analysis" extends="default" namespace="/analysis">
+		<action name="analysisAction" class="cn.com.codes.analysisManager.web.AnalysisAction">
+			<result name="goAnalysisMain">/itest/jsp/analysisManage/analysisManage.jsp</result>
+			<result name="devDayFixTrend">/itest/jsp/analysisManage/devDayFixTrend.jsp</result>
+			<result name="reptFixCloseDayTrend">/itest/jsp/analysisManage/reptFixCloseDayTrend.jsp</result>
+			<result name="commitExistBugBuildStat">/itest/jsp/analysisManage/commitExistBugBuildStat.jsp</result>
+			<result name="testerDayCommitTrend">/itest/jsp/analysisManage/testerDayCommitTrend.jsp</result>
+			
+			<result name="writeCaseDayTrend">/itest/jsp/analysisManage/writeCaseDayTrend.jsp</result>
+			<result name="commitExistBugDayStat">/itest/jsp/analysisManage/commitExistBugDayStart.jsp</result>
+			<result name="testerExeCaseDayTrend">/itest/jsp/analysisManage/testerExeCaseDayTrend.jsp</result>
+			<result name="ajax">/jsp/analysisManager/analysisResult.txt</result>
+			<result name="jump">/jsp/common/reptHint.jsp</result>
+			<result name="reptView">/jsp/common/sysHimt.jsp</result>
+			
+			<result name="bugFixPersonStat">/itest/jsp/analysisManage/bugFixPersonStat.jsp</result>
+			<result name="bugExistDayStat">/itest/jsp/analysisManage/bugExistDayStat.jsp</result>
+			<result name="bugExistDay4NoFixStat">/itest/jsp/analysisManage/bugExistDay4NoFixStat.jsp</result>
+			<result name="bugTypeStat">/itest/jsp/analysisManage/bugTypeStat.jsp</result>
+			<result name="bugImpPhaseStat">/itest/jsp/analysisManage/bugImpPhaseStat.jsp</result>
+			<result name="testerBugQuality">/itest/jsp/analysisManage/testerBugQuality.jsp</result>
+			<result name="bugModuleDistbuStat">/itest/jsp/analysisManage/bugModuleDistbuStat.jsp</result>
+			<result name="bugStatusDistbuStat">/itest/jsp/analysisManage/bugStatusDistbuStat.jsp</result>
+			
+			<result name="testerBugStat">/itest/jsp/analysisManage/testerBugStat.jsp</result>
+			<result name="bugExistWeekStat">/itest/jsp/analysisManage/bugExistWeekStat.jsp</result>
+			<result name="bugExistWeek4NoFixStat">/itest/jsp/analysisManage/bugExistWeek4NoFixStat.jsp</result>
+			<result name="bugGradeStat">/itest/jsp/analysisManage/bugGradeStat.jsp</result>
+			<result name="bugBequeathStat">/itest/jsp/analysisManage/bugBequeathStat.jsp</result>
+			<result name="bugDensityStat">/itest/jsp/analysisManage/bugDensityStat.jsp</result> 
+			
+			<result name="chargeOwner">/itest/jsp/analysisManage/chargeOwner.jsp</result> 
+			<result name="importCase">/itest/jsp/analysisManage/importCaseByProject.jsp</result> 
+			<result name="bugSummary">/itest/jsp/analysisManage/bugSummary.jsp</result> 
+			
+		</action>
+	</package>
+	<package name="impExpMgr" extends="default" namespace="/impExpMgr">
+		<action name="bugImpExpAction" class="cn.com.codes.impExpManager.web.BugImpExpAction">
+			<result name="success" type="stream">
+				<param name="contentType">
+					application/x-msdownload;charset=utf-8
+				</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">
+					attachment;filename="bugExport.xls"
+				</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<action name="caseImpExpAction" class="cn.com.codes.impExpManager.web.CaseImpExpAction">
+			<result name="success" type="stream">
+				<param name="contentType">
+					application/x-msdownload;charset=utf-8
+				</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">
+					attachment;filename="caseExport.xls"
+				</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<action name="caseImpAction" class="cn.com.codes.impExpManager.web.CaseImpAction">
+			
+		</action>
+		<action name="caseBugImpAction" class="cn.com.codes.impExpManager.web.CaseBugImpAction">
+			<interceptor-ref name="mypmuploadStack"></interceptor-ref>
+			<result name="success">
+				/jsp/caseManager/importCase.jsp
+			</result>
+		</action>
+	</package>
+	<!-- 其他任务 -->
+	<package name="otherMission" extends="default" namespace="/otherMission">
+		<action name="otherMissionAction" class="cn.com.codes.otherMission.web.OtherMissionAction">
+			<result name="otherMissionList">
+				/itest/jsp/otherMission/otherMission.jsp
+			</result>
+			<result name="toMeCharge">
+				/itest/jsp/otherMission/toMeCharge.jsp
+			</result>
+			<result name="toMeJoin">
+				/itest/jsp/otherMission/toMeJoin.jsp
+			</result>
+			<result name="toMeConcern">
+				/itest/jsp/otherMission/toMeConcern.jsp
+			</result>
+			<result name="allMissions">
+				/itest/jsp/otherMission/otherMissionAll.jsp
+			</result>
+			<result name="overview">
+				/itest/jsp/otherMission/overview.jsp
+			</result>
+		</action>
+	</package>
+									
+	<!-- 用例包管理 -->
+								
+	<!-- 用例包管理 -->
+	<package name="testCasePkgManager" extends="default" namespace="/testCasePkgManager">
+	   <action name="testCasePackageAction" class="cn.com.codes.testCasePackageManage.web.TestCasePackageAction">
+	     <result name="goTestCasePkgMain">/itest/jsp/testCasePackageManager/testCasePackageMananger.jsp</result>
+	     <result name="selTestCase">/itest/jsp/testCasePackageManager/selTestCase.jsp</result>
+	     <result name="viewTestCase">/itest/jsp/testCasePackageManager/viewTestCase.jsp</result>
+	     <result name="executeTestCase">/itest/jsp/testCasePackageManager/executeTestCase.jsp</result>
+	     <result name="viewTestCaseResult">/itest/jsp/testCasePackageManager/viewTestCaseResult.jsp</result>
+	   </action>
+	</package>
+	<!-- 测试用例库 -->
+	<package name="testLibrary" extends="default" namespace="/testLibrary">
+		<action name="testLibraryAction" class="cn.com.codes.testLibrary.web.TestLibraryAction">
+			<result name="loadTree">
+				/itest/jsp/testLibrary/testLibraryTree.jsp
+			</result>
+			<result name="caseLook">
+				/itest/jsp/testLibrary/caseLook.jsp
+			</result>
+			<result name="caseExamine">
+				/itest/jsp/testLibrary/caseExamine.jsp
+			</result>
+		</action>
+	</package>
+	
+	<!-- 迭代列表 -->
+	<package name="iteration" extends="default" namespace="/iteration">
+		<action name="iterationAction" class="cn.com.codes.iteration.web.IterationAction">
+			<result name="iterationList">
+				/itest/jsp/iteration/iteration.jsp
+			</result>
+			<result name="iterationBugLayout">
+				/itest/jsp/iteration/iterationBugLayout.jsp
+			</result>
+			<result name="iterationTestCaseLayout">
+				/itest/jsp/iteration/iterationTestCaseLayout.jsp
+			</result>
+			<result name="iterationTaskLayout">
+				/itest/jsp/iteration/iterationTaskLayout.jsp
+			</result>
+		</action>
+	</package>
+	
+	<package name="fileInfo" extends="default" namespace="/fileInfo">
+		<action name="fileInfoAction" class="cn.com.codes.fileInfo.web.FileInfoAction">
+		</action>
+	</package>
+	<!-- 总览-->
+	<package name="overview" extends="default" namespace="/overview">
+		<action name="overviewAction" class="cn.com.codes.overview.web.OverviewAction">
+			<result name="loadInformation">
+				/itest/jsp/overview/loadInformation.jsp
+			</result>
+		</action>
+	</package>
+	<!-- 自定义的webwork文件,在文件尾 include 且自定义的一定要继承 default <include file="resource/webwork/rolemanager.xml"></include> 
+		<include file="resource/webwork/usermanager.xml"></include> <include file="resource/webwork/testTaskManager.xml"></include> 
+		<include file="resource/webwork/msgManager.xml"></include> <include file="resource/webwork/analysisManager.xml"></include> 
+		<include file="resource/webwork/impExpMgr.xml"></include> -->
+</xwork>
+
+
+

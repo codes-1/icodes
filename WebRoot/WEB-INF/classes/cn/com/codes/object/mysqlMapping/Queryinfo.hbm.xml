@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="cn.com.codes.object.Queryinfo" table="T_QUERYINFO" discriminator-value="not null">
+    <cache usage="read-write" region="cn.com.codes.object.Queryinfo"/>
+        <id name="queryId" type="java.lang.Long">
+            <column name="QUERY_ID" precision="15" scale="0" />
+			<generator class="native">
+			</generator>
+        </id>
+		<discriminator column="INDENTIFIER" type="java.lang.Integer" />
+        <property name="queryName" type="java.lang.String">
+            <column name="QUERY_NAME" length="100" not-null="true" />
+        </property>
+        <property name="ownerId" type="java.lang.String">
+            <column name="OWNER_ID" length="32" not-null="true" />
+        </property>
+        <property name="paraValueStr" type="java.lang.String">
+            <column name="PARA_VALUE" length="1200" />
+        </property>
+        <property name="onlyMe" type="java.lang.Integer">
+            <column name="IS_OWNER"/>
+        </property>
+        <property name="hqlCondiStr" type="java.lang.String">
+            <column name="HQL_STR" length="600" />
+        </property>
+        <property name="taskId" type="java.lang.String">
+            <column name="TASK_ID" length="32" />
+        </property>       
+		<subclass name="cn.com.codes.object.BugQueryInfo"
+			discriminator-value="1">
+		</subclass>
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping  package="cn.com.codes.object">
+    <class name="cn.com.codes.object.Project" table="t_project">
+    <cache usage="read-write" region="cn.com.codes.object.Project"/>
+        <id name="projectId" type="java.lang.String">
+            <column name="project_id" length="32" not-null="true" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="projectName" type="java.lang.String">
+            <column name="project_name" length="64"/>
+        </property>
+        <property name="projectType" type="java.lang.String">
+            <column name="project_type" length="1"/>
+        </property>
+        <property name="createId" type="java.lang.String">
+            <column name="create_id" length="32"/>
+        </property>
+    </class>
+</hibernate-mapping>

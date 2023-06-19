@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config class.name="cn.com.mypm.object.User" column.length="8">
+	<column index="0" class.property="loginName" not-null="false" errorInformation="用户名必须是是由4位及以上个英文字母、数字和符号组成">
+		<method>checkLoginName</method>
+	</column>
+	<column index="1" class.property="name" not-null="true" errorInformation="姓名不能为空"></column>
+	<column index="2" class.property="password" not-null="true">
+		<method>checkPassword</method>
+	</column>
+	<column index="3" class.property="email" not-null="true">
+		<match>EMAIL</match>
+	</column>
+	<column index="4" class.property="tel" not-null="false"></column>
+	<column index="5" class.property="officeTel" not-null="false"></column>
+	<column index="6" class.property="headShip" not-null="false"></column>
+	<column index="7" class.property="joinCompDate" not-null="false" dataType="DATE">
+		<match>DATE</match>
+	</column>
+	<!-- 
+	<column index="8" class.property="sex" not-null="false">
+		<match>SEX</match>
+	</column>
+	 -->
+</config>

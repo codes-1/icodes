@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE xwork PUBLIC 
+	"-//OpenSymphony Group//XWork 1.1.1//EN"
+	"http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+
+<xwork>
+	<package name="msgManager" extends="default"
+		namespace="/msgManager">
+		<action name="commonMsgAction"
+			class="cn.com.mypm.msgManager.web.CommonMsgAction">
+			<result name="loadMsg">
+				/jsp/broadcastMsg/brocdcastMsgList.jsp
+			</result>
+			<result name="loadRecevMsg">
+				/jsp/broadcastMsg/myRecevBroMsgList.jsp
+			</result>
+			<result name="loadSendMsg">
+				/jsp/broadcastMsg/mySendBroMsgList.jsp
+			</result>
+		</action>
+	</package>
+</xwork>

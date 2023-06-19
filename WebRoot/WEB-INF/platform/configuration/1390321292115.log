@@ -1,0 +1,110 @@
+!SESSION 2014-01-22 00:21:39.105 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.7.0_51
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=zh_CN
+
+!ENTRY org.eclipse.update.configurator 4 0 2014-01-22 00:21:39.105
+!MESSAGE 
+!STACK 0
+org.osgi.framework.BundleException: Exception in org.eclipse.update.internal.configurator.ConfigurationActivator.start() of bundle org.eclipse.update.configurator.
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActivator(BundleContextImpl.java:806)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.start(BundleContextImpl.java:755)
+	at org.eclipse.osgi.framework.internal.core.BundleHost.startWorker(BundleHost.java:352)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.resume(AbstractBundle.java:370)
+	at org.eclipse.osgi.framework.internal.core.Framework.resumeBundle(Framework.java:1068)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:557)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.incFWSL(StartLevelManager.java:464)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStartLevel(StartLevelManager.java:248)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:445)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:227)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:337)
+Caused by: java.lang.OutOfMemoryError: PermGen space
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(Unknown Source)
+	at java.security.SecureClassLoader.defineClass(Unknown Source)
+	at org.apache.catalina.loader.WebappClassLoader.findClassInternal(WebappClassLoader.java:2904)
+	at org.apache.catalina.loader.WebappClassLoader.findClass(WebappClassLoader.java:1173)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1681)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1559)
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(Unknown Source)
+	at java.security.SecureClassLoader.defineClass(Unknown Source)
+	at org.apache.catalina.loader.WebappClassLoader.findClassInternal(WebappClassLoader.java:2904)
+	at org.apache.catalina.loader.WebappClassLoader.findClass(WebappClassLoader.java:1173)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1681)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1559)
+	at org.apache.xerces.parsers.XML11Configuration.<init>(Unknown Source)
+	at org.apache.xerces.parsers.XIncludeAwareParserConfiguration.<init>(Unknown Source)
+	at org.apache.xerces.parsers.XIncludeAwareParserConfiguration.<init>(Unknown Source)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at java.lang.Class.newInstance(Unknown Source)
+	at org.apache.xerces.parsers.ObjectFactory.newInstance(Unknown Source)
+	at org.apache.xerces.parsers.ObjectFactory.createObject(Unknown Source)
+	at org.apache.xerces.parsers.ObjectFactory.createObject(Unknown Source)
+	at org.apache.xerces.parsers.SAXParser.<init>(Unknown Source)
+	at org.apache.xerces.parsers.SAXParser.<init>(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.<init>(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl.<init>(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserFactoryImpl.newSAXParser(Unknown Source)
+	at org.eclipse.update.internal.configurator.ConfigurationParser.<init>(ConfigurationParser.java:50)
+	at org.eclipse.update.internal.configurator.PlatformConfiguration.loadConfig(PlatformConfiguration.java:1085)
+Root exception:
+java.lang.OutOfMemoryError: PermGen space
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(Unknown Source)
+	at java.security.SecureClassLoader.defineClass(Unknown Source)
+	at org.apache.catalina.loader.WebappClassLoader.findClassInternal(WebappClassLoader.java:2904)
+	at org.apache.catalina.loader.WebappClassLoader.findClass(WebappClassLoader.java:1173)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1681)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1559)
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(Unknown Source)
+	at java.security.SecureClassLoader.defineClass(Unknown Source)
+	at org.apache.catalina.loader.WebappClassLoader.findClassInternal(WebappClassLoader.java:2904)
+	at org.apache.catalina.loader.WebappClassLoader.findClass(WebappClassLoader.java:1173)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1681)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1559)
+	at org.apache.xerces.parsers.XML11Configuration.<init>(Unknown Source)
+	at org.apache.xerces.parsers.XIncludeAwareParserConfiguration.<init>(Unknown Source)
+	at org.apache.xerces.parsers.XIncludeAwareParserConfiguration.<init>(Unknown Source)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at java.lang.Class.newInstance(Unknown Source)
+	at org.apache.xerces.parsers.ObjectFactory.newInstance(Unknown Source)
+	at org.apache.xerces.parsers.ObjectFactory.createObject(Unknown Source)
+	at org.apache.xerces.parsers.ObjectFactory.createObject(Unknown Source)
+	at org.apache.xerces.parsers.SAXParser.<init>(Unknown Source)
+	at org.apache.xerces.parsers.SAXParser.<init>(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.<init>(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl.<init>(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserFactoryImpl.newSAXParser(Unknown Source)
+	at org.eclipse.update.internal.configurator.ConfigurationParser.<init>(ConfigurationParser.java:50)
+	at org.eclipse.update.internal.configurator.PlatformConfiguration.loadConfig(PlatformConfiguration.java:1085)
+
+!ENTRY org.eclipse.birt.core 4 0 2014-01-22 00:21:39.112
+!MESSAGE 
+!STACK 0
+org.osgi.framework.BundleException: The bundle could not be resolved. Reason: Missing Constraint: Require-Bundle: org.eclipse.core.runtime; bundle-version="[3.2.0,4.0.0)"
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.getResolverError(AbstractBundle.java:1313)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.getResolutionFailureException(AbstractBundle.java:1297)
+	at org.eclipse.osgi.framework.internal.core.BundleHost.startWorker(BundleHost.java:309)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.resume(AbstractBundle.java:370)
+	at org.eclipse.osgi.framework.internal.core.Framework.resumeBundle(Framework.java:1068)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:557)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.incFWSL(StartLevelManager.java:464)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStartLevel(StartLevelManager.java:248)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:445)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:227)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:337)
+
+!ENTRY org.eclipse.osgi 4 0 2014-01-22 00:21:39.122
+!MESSAGE Bundle org.eclipse.update.configurator_3.3.0.v20090312 [3] is not active.
+
+!ENTRY org.eclipse.osgi 4 0 2014-01-22 00:21:39.123
+!MESSAGE Bundle initial@reference:file:plugins/org.eclipse.birt.core_2.5.2.v20100208.jar/ was not resolved.

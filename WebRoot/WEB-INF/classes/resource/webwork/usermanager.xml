@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xwork PUBLIC 
+	"-//OpenSymphony Group//XWork 1.1.1//EN"
+	"http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="user" extends="default" namespace="/userManager">
+		<action name="userManagerAction"
+			class="cn.com.mypm.userManager.web.UserManagerAction">
+			<result name="adminList">
+				/jsp/userManager/companyList.jsp
+			</result>
+			<result name="groupList">
+				/jsp/userManager/groupList.jsp
+			</result>
+			<result name="userList">
+				/jsp/userManager/userList.jsp
+			</result>
+			<result name="groupUserList">
+				/jsp/userManager/groupUserList.jsp
+			</result>
+			<result name="redctCompList" type="redirect">
+				/userManager/userManagerAction!companyList.action?message=${message}
+			</result>
+			<result name="redctUserList" type="redirect">
+				/userManager/userManagerAction!userList.action?message=${message}
+			</result>
+			<result name="login" type="redirect">
+				/jsp/userManager/login.jsp
+			</result>
+			<result name="reLogin" type="redirect">
+				/jsp/userManager/reLogin.jsp
+			</result>
+			<result name="initLogin" type="redirect">
+				/jsp/userManager/login.jsp
+			</result>
+			<result name="choiseGroups">
+				/jsp/userManager/UserManagerResult.txt
+			</result>
+			<result name="ajaxRest">
+				/jsp/userManager/UserManagerResult.txt
+			</result>
+			<result name="loginAccess" type="redirect">
+				/project/projectAction!listProjects.action
+			</result>
+			<result name="initLogin">/jsp/userManager/UserManagerResult.txt</result>
+			<result name="setMyInfoInit">
+				/jsp/userManager/updateMyInfo.jsp
+			</result>
+			<result name="loginWithBug" type="redirect">
+				/bugManager/bugManagerAction!jump2HandlingBug.action?dto.bug.bugId=${mailBugId}
+			</result>
+			<result name="loginWithBatchBug" type="redirect">
+				/bugManager/bugManagerAction!loadMyBug.action?dto.taskId=${mailBugId}
+			</result>
+			<result name="autoLogin" type="redirect">
+				/jsp/userManager/autoLogin.jsp?mailBugId=${mailBugId}
+			</result>		
+		</action>
+	</package>
+</xwork>

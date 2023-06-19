@@ -1,0 +1,101 @@
+.addTestRequirementDescDiv {
+	width: 100%;
+	text-align: center;
+}
+
+.addTestRequirementNameTab td input {
+	height: 30px;
+	border: 1px solid #ccc;/*#E5F2F8*/
+	width: 100%;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.addTestRequirementFormDiv {
+	width: 100%;
+}
+
+.addTestRequirementNameTab {
+	width: 100%;
+	/*float: left;*/
+}
+
+.addTestRequirementNameTab tr {
+	height: 35px;
+	
+}
+
+.addTestRequirementNameTab th {
+	background-color: #f5f5f5;
+}
+
+.addTestRequirementDiffQuotientValueTab {
+	width: 15%;
+	float: left;
+	margin-left: 1px;
+	
+}
+
+.addTestRequirementUseCaseValueTab {
+	width: 15%;
+	float: left;
+	margin-left: 1px;
+}
+
+.addTestRequirementScriptValueTab {
+	width: 15%;
+	float: left;
+	margin-left: 1px;
+	display: none;
+}
+
+.addTestRequirementSceneValueTab {
+	width: 15%;
+	float: left;
+	margin-left: 1px;
+	display: none;
+}
+.addTestRequirementNameTab td {
+	/*heigth: 20px;
+	width: 33.3%;
+	padding: 0px 0px 0px 15px;*/
+}
+.addTestRequirementValueTab tr {
+	
+}
+/*
+.addTestRequirementNameTab input {
+	width: 100%;
+}
+
+
+*/
+
+.radioSpan {
+      position: relative;
+      border: 1px solid #95B8E7;
+      background-color: #fff;
+      vertical-align: middle;
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      margin: 0;
+      padding: 0;
+      -moz-border-radius: 5px 5px 5px 5px;
+      -webkit-border-radius: 5px 5px 5px 5px;
+      border-radius: 5px 5px 5px 5px;
+      display:block;
+}
+
+.datagrid-header {
+	height: 40px;
+}
+.datagrid-htable{
+	height: 40px;
+}
+.datagrid-body td{
+    padding: 11px 0;
+} 

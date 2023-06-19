@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.com.codes.object" >
+	<class name="IterationBugReal" table="t_iteration_bug_real" dynamic-update="true">
+	<cache usage="read-write" region="cn.com.codes.object.IterationBugReal"/>
+		<id name="iterationBugId" type="java.lang.String">
+			<column name="iteration_bug_id" length="32" not-null="true" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="iterationId" type="java.lang.String">
+			<column name="iteration_id" length="32" not-null="true"/>
+		</property>
+		<property name="bugCardId" type="java.lang.String">
+			<column name="bug_card_id" length="32" not-null="true"/>
+		</property>
+	</class>
+</hibernate-mapping>

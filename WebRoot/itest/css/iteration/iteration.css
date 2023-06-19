@@ -1,0 +1,42 @@
+.has-error .form-control {
+    border-color: #CCCCCC;
+}
+/* .dropdown-menu>li>a {
+    padding: 4px 12px;
+} */
+
+.disabled { 
+	pointer-events: none; 
+}
+
+.datagrid-header {
+	height: 40px;
+}
+.datagrid-htable{
+	height: 40px;
+}
+.datagrid-body td{
+    padding: 11px 0;
+}  
+#second_Tables tr {
+    line-height: 45px;
+}
+.moveRight {
+    padding-left: 50px;
+}
+
+.fontCs {
+    font-size: 14px;
+}
+input[id^="_exui_textbox_input"]{
+	    border-radius: 4px;
+}
+.proStName {
+	width: 145px;
+    height: 34px;
+    border: 1px solid #CCCCCC;
+}  
+#proAllName option {
+	width: 60px;
+	border: none;
+} 
